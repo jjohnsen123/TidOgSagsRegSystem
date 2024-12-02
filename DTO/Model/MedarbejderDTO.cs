@@ -11,15 +11,16 @@ namespace DTO.Model
         public int CprNr { get; set; }
         public string Initialer {  get; set; }
         public string Navn { get; set; }
-        public List<AfdelingDTO> AfdList { get; set; } = new List<AfdelingDTO>();
+        public AfdelingDTO Afdeling { get; set; }
         public List<TidsregistreringDTO> TidsregList { get; set; } = new List<TidsregistreringDTO>();
 
 
-        public MedarbejderDTO(int cprNr, string initialer, string navn)
+        public MedarbejderDTO(int cprNr, string initialer, string navn, AfdelingDTO afdeling)
         {
             CprNr = cprNr;
             Initialer = initialer;
             Navn = navn;
+            Afdeling = afdeling;
         }
     }
 }

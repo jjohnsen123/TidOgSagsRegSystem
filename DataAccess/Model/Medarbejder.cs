@@ -11,14 +11,15 @@ namespace DataAccess.Model
         public int CprNr { get; set; }
         public string Initialer { get; set; }
         public string Navn { get; set; }
-        public List<Afdeling> AfdList { get; set; } = new List<Afdeling>();
+        public Afdeling Afdeling { get; set; }
         public List<Tidsregistrering> TidsregList { get; set; } = new List<Tidsregistrering>();
 
-        public Medarbejder(int cprNr, string initialer, string navn)
+        public Medarbejder(int cprNr, string initialer, string navn, Afdeling afdeling)
         {
             CprNr = cprNr;
             Initialer = initialer;
             Navn = navn;
+            Afdeling = afdeling;
         }
     }
 }
