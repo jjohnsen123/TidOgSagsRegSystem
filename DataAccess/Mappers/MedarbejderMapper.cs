@@ -12,13 +12,12 @@ namespace DataAccess.Mappers
     {
         public static MedarbejderDTO Map(Medarbejder ma)
         {
-            return new MedarbejderDTO(ma.CprNr, ma.Initialer, ma.Navn);
-            // MANGLER AT KØRE AFDLIST IGENNEM
+            return new MedarbejderDTO(ma.CprNr, ma.Initialer, ma.Navn, AfdelingMapper.Map(ma.Afdeling));
         }
 
         public static Medarbejder Map(MedarbejderDTO ma)
         {
-            return new Medarbejder(ma.CprNr, ma.Initialer, ma.Navn);
+            return new Medarbejder(ma.CprNr, ma.Initialer, ma.Navn, AfdelingMapper.Map(ma.Afdeling));
         }
 
 

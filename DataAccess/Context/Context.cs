@@ -37,7 +37,8 @@ namespace DataAccess.Context
             modelBuilder.Entity<Sag>()
                 .HasKey(s => s.SagsNr);
 
-            modelBuilder.Entity<Tidsregistrering>();
+            modelBuilder.Entity<Tidsregistrering>()
+                .HasKey(t => t.TidregId);
 
             modelBuilder.Entity<Medarbejder>()
                 .HasMany(m => m.TidsregList)
@@ -50,7 +51,7 @@ namespace DataAccess.Context
 
             modelBuilder.Entity<Afdeling>()
                 .HasMany(a => a.MedarbList)
-                .WithMany(m => m.AfdList);
+                .WithOne(m => m.Afdeling);
         }
 
 
