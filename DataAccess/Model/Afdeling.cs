@@ -19,6 +19,8 @@ namespace DataAccess.Model
             Navn = navn;
         }
 
-
+        public Afdeling()
+        {
+        }
     }
 }

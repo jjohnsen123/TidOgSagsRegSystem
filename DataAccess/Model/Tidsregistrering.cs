@@ -23,5 +23,8 @@ namespace DataAccess.Model
             SlutTid = slutTid;
         }
 
+        public Tidsregistrering()
+        {
+        }
     }
 }

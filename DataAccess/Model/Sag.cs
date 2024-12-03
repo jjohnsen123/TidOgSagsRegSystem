@@ -21,5 +21,9 @@ namespace DataAccess.Model
             Beskrivelse = beskrivelse;
             Afd = afd;
         }
+
+        public Sag()
+        {
+        }
     }
 }

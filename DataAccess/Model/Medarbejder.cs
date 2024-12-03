@@ -21,5 +21,9 @@ namespace DataAccess.Model
             Navn = navn;
             Afdeling = afdeling;
         }
+
+        public Medarbejder()
+        {
+        }
     }
 }
