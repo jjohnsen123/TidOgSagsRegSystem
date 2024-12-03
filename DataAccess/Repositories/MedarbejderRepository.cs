@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repositories
 {
-    internal class MedarbejderRepository
+    public class MedarbejderRepository
     {
 
         public static MedarbejderDTO GetMedarbejder(string initialer)
@@ -82,7 +82,7 @@ namespace DataAccess.Repositories
             }
         }
 
-        public static List<Tidsregistrering> AllTidReg(Medarbejder ma) //MedarbejderDTO eller Medarbejder?
+        public static List<Tidsregistrering> AllTidRegInMedarb(Medarbejder ma) //MedarbejderDTO eller Medarbejder?
         {
             List<Tidsregistrering> retur = new List<Tidsregistrering>();
 
@@ -97,10 +97,11 @@ namespace DataAccess.Repositories
             }
         }
 
-        public static void AddTidsReg(string initialer, Tidsregistrering tr)
+        public static void AddTidsReg(string initialer, TidsregistreringDTO tidsreg)
         {
             using (TidSagRegDbContext context = new TidSagRegDbContext())
             {
+                var tr = TidsregistreringMapper.Map(tidsreg);
                 var ma = context.Medarbejdere.Find(initialer);
 
                 if (ma == null)
@@ -109,6 +110,25 @@ namespace DataAccess.Repositories
                 }
 
                 ma.TidsregList.Add(tr);
+                context.Tidsregistreringer.Add(tr);
+                
+                context.SaveChanges();
+            }
+        }
+
+        public static void DeleteTidsReg(int id)
+        {
+            using (TidSagRegDbContext context = new TidSagRegDbContext())
+            {
+                var tr = context.Tidsregistreringer.Find(id);
+
+                if (tr == null)
+                {
+                    throw new KeyNotFoundException($"Tidsregistrering med initialer '{id}' blev ikke fundet.");
+                }
+
+                tr.Medarbejder.TidsregList.Remove(tr);
+                context.Tidsregistreringer.Remove(tr);
                 context.SaveChanges();
             }
         }

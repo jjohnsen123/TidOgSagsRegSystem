@@ -14,13 +14,13 @@ namespace DataAccess.Mappers
         {
             var sa = new SagDTO(sag.SagsNr, sag.Overskrift, sag.Beskrivelse, AfdelingMapper.Map(sag.Afd));
 
-            if (sag.TidsregList != null)
-            {
-                foreach (var tr in sag.TidsregList)
-                {
-                    sa.TidsregList.Add(TidsregistreringMapper.Map(tr));
-                }
-            }
+            //if (sag.TidsregList != null)
+            //{
+            //    foreach (var tr in sag.TidsregList)
+            //    {
+            //        sa.TidsregList.Add(TidsregistreringMapper.Map(tr));
+            //    }
+            //}
 
             return sa;
         }
@@ -29,15 +29,24 @@ namespace DataAccess.Mappers
         {
             var sa = new Sag(sag.SagsNr, sag.Overskrift, sag.Beskrivelse, AfdelingMapper.Map(sag.Afd));
 
-            if (sag.TidsregList != null)
-            {
-                foreach (var tr in sag.TidsregList)
-                {
-                    sa.TidsregList.Add(TidsregistreringMapper.Map(tr));
-                }
-            }
+            //if (sag.TidsregList != null)
+            //{
+            //    foreach (var tr in sag.TidsregList)
+            //    {
+            //        sa.TidsregList.Add(TidsregistreringMapper.Map(tr));
+            //    }
+            //}
 
             return sa;
+        }
+
+
+        public static void Update(Sag sag, SagDTO sagDTO)
+        {
+            sag.SagsNr = sagDTO.SagsNr;
+            sag.Overskrift = sagDTO.Overskrift;
+            sag.Beskrivelse = sagDTO.Beskrivelse;
+            sag.Afd = AfdelingMapper.Map(sagDTO.Afd);
         }
     }
 }

@@ -10,8 +10,8 @@ namespace DataAccess.Model
     {
         public int AfdNr { get; set; }
         public string Navn { get; set; }
-        public List<Medarbejder> MedarbList { get; set; } = new List<Medarbejder>();
-
+        //public List<Medarbejder> MedarbList { get; set; } = new List<Medarbejder>();
+        // Ikke rigtig nødvendig, men kan bruges senere
 
         public Afdeling(int afdNr, string navn)
         {
