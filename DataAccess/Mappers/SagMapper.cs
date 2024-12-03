@@ -12,12 +12,32 @@ namespace DataAccess.Mappers
     {
         public static SagDTO Map(Sag sag)
         {
-            return new SagDTO(sag.SagsNr, sag.Overskrift, sag.Beskrivelse, AfdelingMapper.Map(sag.Afd));
+            var sa = new SagDTO(sag.SagsNr, sag.Overskrift, sag.Beskrivelse, AfdelingMapper.Map(sag.Afd));
+
+            if (sag.TidsregList != null)
+            {
+                foreach (var tr in sag.TidsregList)
+                {
+                    sa.TidsregList.Add(TidsregistreringMapper.Map(tr));
+                }
+            }
+
+            return sa;
         }
 
         public static Sag Map(SagDTO sag)
         {
-            return new Sag(sag.SagsNr, sag.Overskrift, sag.Beskrivelse, AfdelingMapper.Map(sag.Afd));
+            var sa = new Sag(sag.SagsNr, sag.Overskrift, sag.Beskrivelse, AfdelingMapper.Map(sag.Afd));
+
+            if (sag.TidsregList != null)
+            {
+                foreach (var tr in sag.TidsregList)
+                {
+                    sa.TidsregList.Add(TidsregistreringMapper.Map(tr));
+                }
+            }
+
+            return sa;
         }
     }
 }

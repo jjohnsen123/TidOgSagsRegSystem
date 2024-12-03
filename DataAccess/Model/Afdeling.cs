@@ -18,5 +18,7 @@ namespace DataAccess.Model
             AfdNr = afdNr;
             Navn = navn;
         }
+
+
     }
 }

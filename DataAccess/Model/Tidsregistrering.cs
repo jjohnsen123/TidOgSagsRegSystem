@@ -16,7 +16,7 @@ namespace DataAccess.Model
 
         public Tidsregistrering(int id,Medarbejder medarbejder, Sag? sag, DateTime startTid, DateTime slutTid)
         {
-            TidregId = Id;
+            TidregId = id;
             Medarbejder = medarbejder;
             Sag = sag;
             StartTid = startTid;

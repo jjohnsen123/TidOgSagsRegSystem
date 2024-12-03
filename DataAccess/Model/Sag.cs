@@ -12,7 +12,7 @@ namespace DataAccess.Model
         public string Overskrift {  get; set; }
         public string Beskrivelse { get; set; }
         public Afdeling Afd { get; set; }
-        public List<Tidsregistrering> TidsregList { get; set; } = new List<Tidsregistrering>();
+        public List<Tidsregistrering> TidsregList { get; set; } = new List<Tidsregistrering>(); //Måske ikke nødvednigt
 
         public Sag(int sagsNr, string overskrift, string beskrivelse, Afdeling afd)
         {

@@ -9,9 +9,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Context
 {
-    internal class Context : DbContext
+    internal class TidSagRegDbContext : DbContext
     {
-        public Context()
+        public TidSagRegDbContext()
         {
             bool created = Database.EnsureCreated();
             if (created)
@@ -32,7 +32,7 @@ namespace DataAccess.Context
                 .HasKey(a => a.AfdNr);
 
             modelBuilder.Entity<Medarbejder>()
-                .HasKey(m => m.CprNr);
+                .HasKey(m => m.Initialer);
 
             modelBuilder.Entity<Sag>()
                 .HasKey(s => s.SagsNr);

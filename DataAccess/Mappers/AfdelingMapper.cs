@@ -12,12 +12,33 @@ namespace DataAccess.Mappers
     {
         public static AfdelingDTO Map(Afdeling afd)
         {
-            return new AfdelingDTO(afd.AfdNr, afd.Navn);
+            var afdeling = new AfdelingDTO(afd.AfdNr, afd.Navn);
+
+            if (afd.MedarbList !=  null)
+            {
+                foreach (var ma in afd.MedarbList)
+                {
+                    afdeling.MedarbList.Add(MedarbejderMapper.Map(ma));
+                }
+            }
+
+            return afdeling;
+
         }
 
         public static Afdeling Map(AfdelingDTO afd)
         {
-            return new Afdeling(afd.AfdNr, afd.Navn);
+            var afdeling = new Afdeling(afd.AfdNr, afd.Navn);
+
+            if (afd.MedarbList != null)
+            {
+                foreach (var ma in afd.MedarbList)
+                {
+                    afdeling.MedarbList.Add(MedarbejderMapper.Map(ma));
+                }
+            }
+
+            return afdeling;
         }
     }
 }
