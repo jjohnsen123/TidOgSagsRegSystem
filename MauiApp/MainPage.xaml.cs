@@ -1,6 +1,6 @@
 ﻿using BusinessLogic.BLL;
 
-namespace MauiApp
+namespace MauiGUI
 {
     public partial class MainPage : ContentPage
     {

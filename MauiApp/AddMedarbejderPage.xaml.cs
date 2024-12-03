@@ -1,7 +1,7 @@
 using BusinessLogic.BLL;
 using DTO.Model;
 
-namespace MauiApp;
+namespace MauiGUI;
 
 public partial class AddMedarbejderPage : ContentPage
 {
