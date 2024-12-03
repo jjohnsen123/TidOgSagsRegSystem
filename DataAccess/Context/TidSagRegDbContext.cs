@@ -44,14 +44,14 @@ namespace DataAccess.Context
                 .HasMany(m => m.TidsregList)
                 .WithOne(t => t.Medarbejder);
 
-            modelBuilder.Entity<Sag>()
-                .HasMany(s => s.TidsregList)
-                .WithOne(t => t.Sag)
-                .IsRequired(false);
+            //modelBuilder.Entity<Sag>()
+            //    .HasMany(s => s.TidsregList)
+            //    .WithOne(t => t.Sag)
+            //    .IsRequired(false);
 
-            modelBuilder.Entity<Afdeling>()
-                .HasMany(a => a.MedarbList)
-                .WithOne(m => m.Afdeling);
+            //modelBuilder.Entity<Afdeling>()
+            //    .HasMany(a => a.MedarbList)
+            //    .WithOne(m => m.Afdeling);
         }
 
 
