@@ -22,7 +22,7 @@ namespace DataAccess.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=EAA-SH-KLBO-KU\\SQLEXPRESS;Initial Catalog=EksamenTidOgSagRegSystem;Integrated Security = SSPI; TrustServerCertificate=true");
+            optionsBuilder.UseSqlServer("Data Source=LAPTOP-ANE2D06V\\SQLEXPRESS;Initial Catalog=TidSagOgRegDB;Integrated Security=SSPI;TrustServerCertificate=true");
             optionsBuilder.LogTo(message  => Debug.WriteLine(message));
         }
 
@@ -30,6 +30,14 @@ namespace DataAccess.Context
         {
             modelBuilder.Entity<Afdeling>()
                 .HasKey(a => a.AfdNr);
+
+            modelBuilder.Entity<Afdeling>()
+                .HasData(new Afdeling[]
+                {
+                    new Afdeling(1, "Test Afd1"),
+                    new Afdeling(2, "Afslapnings afdeling"),
+                    new Afdeling(3, "Hallo det her virker")
+                });
 
             modelBuilder.Entity<Medarbejder>()
                 .HasKey(m => m.Initialer);

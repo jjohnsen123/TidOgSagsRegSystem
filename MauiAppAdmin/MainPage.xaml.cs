@@ -1,25 +1,42 @@
-﻿namespace MauiAppAdmin
+﻿using BusinessLogic.BLL;
+
+namespace MauiAppAdmin
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
+        private MedarbejderBLL _medarbejderBLL = new MedarbejderBLL();
 
         public MainPage()
         {
             InitializeComponent();
+            LoadMedarbejdere();
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        private void LoadMedarbejdere()
         {
-            count++;
+            try
+            {
+                var medarbejdere = _medarbejderBLL.GetAllMedarbejdere();
+                MedarbejderListView.ItemsSource = medarbejdere;
+            }
+            catch (Exception ex)
+            {
+                DisplayAlert("Fejl", ex.Message, "OK");
+            }
+        }
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
+        private void AddMedarbejderClicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new AddMedarbejderPage());
+        }
 
-            SemanticScreenReader.Announce(CounterBtn.Text);
+        private void EditMedarbejderClicked(object sender, EventArgs e)
+        {
+            var medarbejder = (sender as Button)?.CommandParameter as DTO.Model.MedarbejderDTO;
+            if (medarbejder != null)
+            {
+                // Navigation.PushAsync(new EditMedarbejderPage(medarbejder));
+            }
         }
     }
-
 }

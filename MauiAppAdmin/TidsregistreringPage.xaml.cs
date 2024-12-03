@@ -27,9 +27,9 @@ public partial class TidsregistreringPage : ContentPage
         }
     }
 
-    //private async void AddTidsregClicked(object sender, EventArgs e)
-    //{
-    //    await Navigation.PushAsync(new AddTidsregistreringPage(_medarbejderInitialer));
-    //}
+    private void AddTidsregClicked(object sender, EventArgs e)
+    {
+        //await Navigation.PushAsync(new AddTidsregistreringPage(_medarbejderInitialer));
+    }
 }
 

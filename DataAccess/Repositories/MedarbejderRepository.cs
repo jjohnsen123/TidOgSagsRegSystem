@@ -13,7 +13,6 @@ namespace DataAccess.Repositories
 {
     public class MedarbejderRepository
     {
-
         public static MedarbejderDTO GetMedarbejder(string initialer)
         {
             using (TidSagRegDbContext context = new TidSagRegDbContext())
