@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp.MainPage">
+
+    <StackLayout Padding="20">
+        <Label Text="Medarbejdere" FontSize="Large" FontAttributes="Bold" />
+        <CollectionView x:Name="MedarbejderListView" SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{Binding Initialer}" />
+                        <Label Text=" - " />
+                        <Label Text="{Binding Navn}" />
+                        <Button Text="Rediger" Clicked="EditMedarbejderClicked" CommandParameter="{Binding}" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button Text="Tilføj Medarbejder" Clicked="AddMedarbejderClicked" />
+    </StackLayout>
+</ContentPage>

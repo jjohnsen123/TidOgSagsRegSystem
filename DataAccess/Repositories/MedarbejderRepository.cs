@@ -76,24 +76,30 @@ namespace DataAccess.Repositories
         {
             using (TidSagRegDbContext context = new TidSagRegDbContext())
             {
-                var medarbejdere = context.Medarbejdere;
+                var ma = context.Medarbejdere;
 
-                return medarbejdere.Select(MedarbejderMapper.Map).ToList();
+                return ma.Select(MedarbejderMapper.Map).ToList();
             }
         }
 
-        public static List<Tidsregistrering> AllTidRegInMedarb(Medarbejder ma) //MedarbejderDTO eller Medarbejder?
+        public static List<TidsregistreringDTO> GetAllTidRegInMedarb(string initialer)
         {
-            List<Tidsregistrering> retur = new List<Tidsregistrering>();
-
             using (TidSagRegDbContext context = new TidSagRegDbContext())
             {
-                foreach (var tr in ma.TidsregList)
+                List<TidsregistreringDTO> tidsregList = new List<TidsregistreringDTO>();
+                var ma = context.Medarbejdere.Find(initialer);
+
+                if (ma == null)
                 {
-                    retur.Add(tr);
+                    throw new KeyNotFoundException($"Medarbejder med initialer '{initialer}' blev ikke fundet.");
                 }
 
-                return retur;
+                foreach (var tr in ma.TidsregList)
+                {
+                    tidsregList.Add(TidsregistreringMapper.Map(tr));
+                }
+
+                return tidsregList;
             }
         }
 

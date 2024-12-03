@@ -40,7 +40,6 @@ namespace DataAccess.Mappers
             return medarb;
         }
 
-
         public static void Update(Medarbejder ma, MedarbejderDTO maDTO)
         {
             ma.CprNr = maDTO.CprNr;
@@ -48,5 +47,6 @@ namespace DataAccess.Mappers
             ma.Navn = maDTO.Navn;
             ma.Afdeling = AfdelingMapper.Map(maDTO.Afdeling);
         }
+
     }
 }

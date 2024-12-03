@@ -70,8 +70,14 @@ namespace BusinessLogic.BLL
             return MedarbejderRepository.GetAllMedarbejdere();
         }
 
+        public List<TidsregistreringDTO> GetAllTidRegInMedarb(string initialier)
+        {
+            return MedarbejderRepository.GetAllTidRegInMedarb(initialier);
+        }
+
+
         // Tilføj en tidsregistrering for en medarbejder
-        public void AddTidsregistrering(string initialer, TidsregistreringDTO tr)
+        public void AddTidsregs(string initialer, TidsregistreringDTO tr)
         {
             // Valider at tidsregistreringen har de nødvendige data
             if (tr.StartTid == default || tr.SlutTid == default)
