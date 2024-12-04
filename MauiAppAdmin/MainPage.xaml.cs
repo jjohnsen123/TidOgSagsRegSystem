@@ -5,6 +5,7 @@ namespace MauiAppAdmin
     public partial class MainPage : ContentPage
     {
         private MedarbejderBLL _medarbejderBLL = new MedarbejderBLL();
+        private AfdelingBLL _afdelingBLL = new AfdelingBLL();
 
         public MainPage()
         {
@@ -17,6 +18,7 @@ namespace MauiAppAdmin
             try
             {
                 var medarbejdere = _medarbejderBLL.GetAllMedarbejdere();
+                var afdelinger = _afdelingBLL.GetAllAfdelinger();
                 MedarbejderListView.ItemsSource = medarbejdere;
             }
             catch (Exception ex)

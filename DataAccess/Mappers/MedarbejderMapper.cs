@@ -12,7 +12,7 @@ namespace DataAccess.Mappers
     {
         public static MedarbejderDTO Map(Medarbejder ma)
         {
-            var medarb = new MedarbejderDTO(ma.CprNr, ma.Initialer, ma.Navn, AfdelingMapper.Map(ma.Afdeling));
+            var medarb = new MedarbejderDTO(ma.CprNr, ma.Initialer, ma.Navn, AfdelingMapper.Map(ma.Afdeling), ma.AfdelingId);
 
             if (ma.TidsregList != null)
             {
@@ -27,7 +27,7 @@ namespace DataAccess.Mappers
 
         public static Medarbejder Map(MedarbejderDTO ma)
         {
-            var medarb = new Medarbejder(ma.CprNr, ma.Initialer, ma.Navn, AfdelingMapper.Map(ma.Afdeling));
+            var medarb = new Medarbejder(ma.CprNr, ma.Initialer, ma.Navn, AfdelingMapper.Map(ma.Afdeling), ma.AfdelingId);
 
             if (ma.TidsregList != null)
             {
@@ -39,6 +39,8 @@ namespace DataAccess.Mappers
 
             return medarb;
         }
+
+
 
         public static void Update(Medarbejder ma, MedarbejderDTO maDTO)
         {

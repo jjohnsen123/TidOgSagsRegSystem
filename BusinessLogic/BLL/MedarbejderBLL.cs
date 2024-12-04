@@ -18,14 +18,12 @@ namespace BusinessLogic.BLL
             }
             catch (KeyNotFoundException ex)
             {
-                // Tilføj evt. logik for at logge fejl eller informere brugeren
                 throw new KeyNotFoundException($"Kunne ikke finde medarbejderen: {ex.Message}");
             }
         }
 
         public void AddMedarbejder(MedarbejderDTO ma)
         {
-            // Tilføj forretningslogik: valider medarbejderen, før du tilføjer den til databasen
             if (string.IsNullOrEmpty(ma.Initialer) || string.IsNullOrEmpty(ma.Navn))
             {
                 throw new ArgumentException("Medarbejderens initialer og navn skal udfyldes.");
@@ -36,7 +34,6 @@ namespace BusinessLogic.BLL
 
         public void EditMedarbejder(MedarbejderDTO ma)
         {
-            // Validerer, at medarbejderen eksisterer, og data er gyldige
             if (string.IsNullOrEmpty(ma.Initialer) || string.IsNullOrEmpty(ma.Navn))
             {
                 throw new ArgumentException("Medarbejderens initialer og navn skal udfyldes.");
@@ -60,7 +57,6 @@ namespace BusinessLogic.BLL
             }
             catch (KeyNotFoundException ex)
             {
-                // Behandle undtagelsen, hvis medarbejderen ikke findes
                 throw new KeyNotFoundException($"Kunne ikke finde medarbejderen: {ex.Message}");
             }
         }
@@ -75,11 +71,8 @@ namespace BusinessLogic.BLL
             return MedarbejderRepository.GetAllTidRegInMedarb(initialier);
         }
 
-
-        // Tilføj en tidsregistrering for en medarbejder
         public void AddTidsregs(string initialer, TidsregistreringDTO tr)
         {
-            // Valider at tidsregistreringen har de nødvendige data
             if (tr.StartTid == default || tr.SlutTid == default)
             {
                 throw new ArgumentException("Start- og sluttidspunkt skal udfyldes korrekt.");

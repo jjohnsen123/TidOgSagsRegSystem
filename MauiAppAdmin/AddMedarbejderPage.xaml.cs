@@ -50,7 +50,7 @@ public partial class AddMedarbejderPage : ContentPage
 
             var valgtAfdeling = (AfdelingDTO)AfdelingPicker.SelectedItem;
 
-            var medarbejder = new MedarbejderDTO((int)cprNummer, InitialerEntry.Text, NavnEntry.Text, valgtAfdeling);
+            var medarbejder = new MedarbejderDTO((int)cprNummer, InitialerEntry.Text, NavnEntry.Text, valgtAfdeling, valgtAfdeling.AfdelingId);
 
             _medarbejderBLL.AddMedarbejder(medarbejder);
             await Navigation.PopAsync();

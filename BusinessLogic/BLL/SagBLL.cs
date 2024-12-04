@@ -18,14 +18,12 @@ namespace BusinessLogic.BLL
             }
             catch (KeyNotFoundException ex)
             {
-                // Håndter undtagelsen ved at kaste en mere brugervenlig besked
                 throw new KeyNotFoundException($"Kunne ikke finde sagen: {ex.Message}");
             }
         }
 
         public void AddSag(SagDTO sag)
         {
-            // Tilføj forretningslogik: Valider at nødvendige data er udfyldt
             if (string.IsNullOrEmpty(sag.Overskrift))
             {
                 throw new ArgumentException("Sagens overskrift skal udfyldes.");
@@ -36,7 +34,6 @@ namespace BusinessLogic.BLL
 
         public void EditSag(SagDTO sag)
         {
-            // Valider at sagens nødvendige data er udfyldt
             if (string.IsNullOrEmpty(sag.Overskrift))
             {
                 throw new ArgumentException("Sagens overskrift skal udfyldes.");
@@ -60,7 +57,6 @@ namespace BusinessLogic.BLL
             }
             catch (KeyNotFoundException ex)
             {
-                // Håndter undtagelsen, hvis sagen ikke findes
                 throw new KeyNotFoundException($"Kunne ikke finde sagen: {ex.Message}");
             }
         }

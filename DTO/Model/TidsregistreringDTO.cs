@@ -22,5 +22,9 @@ namespace DTO.Model
             StartTid = startTid;
             SlutTid = slutTid;
         }
+
+        public TidsregistreringDTO()
+        {
+        }
     }
 }

@@ -22,5 +22,9 @@ namespace DTO.Model
             Beskrivelse = beskrivelse;
             Afd = afd;
         }
+
+        public SagDTO()
+        {
+        }
     }
 }

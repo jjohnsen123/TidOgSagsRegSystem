@@ -40,11 +40,11 @@ namespace DataAccess.Repositories
         {
             using (TidSagRegDbContext context = new TidSagRegDbContext())
             {
-                var afd = context.Afdelinger.Find(afdDTO.AfdNr);
+                var afd = context.Afdelinger.Find(afdDTO.AfdelingId);
 
                 if (afd == null)
                 {
-                    throw new KeyNotFoundException($"Afdeling med nummer '{afdDTO.AfdNr}' blev ikke fundet.");
+                    throw new KeyNotFoundException($"Afdeling med nummer '{afdDTO.AfdelingId}' blev ikke fundet.");
                 }
 
                 AfdelingMapper.Update(afd, afdDTO);
@@ -57,7 +57,7 @@ namespace DataAccess.Repositories
         {
             using (TidSagRegDbContext context = new TidSagRegDbContext())
             {
-                var afd = context.Afdelinger.FirstOrDefault(a => a.AfdNr == afdNr);
+                var afd = context.Afdelinger.FirstOrDefault(a => a.Id == afdNr);
 
                 if (afd == null)
                 {

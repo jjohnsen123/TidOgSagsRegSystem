@@ -4,7 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataAccess.Mappers;
 using DataAccess.Model;
+using DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Context
@@ -29,19 +31,24 @@ namespace DataAccess.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Afdeling>()
-                .HasKey(a => a.AfdNr);
+                .HasKey(a => a.Id);
 
-            modelBuilder.Entity<Afdeling>()
-                .HasData(new Afdeling[]
-                {
-                    new Afdeling(1, "Test Afd1"),
-                    new Afdeling(2, "Afslapnings afdeling"),
-                    new Afdeling(3, "Hallo det her virker")
-                });
+            // Seed afdelinger
+            modelBuilder.Entity<Afdeling>().HasData(
+                new Afdeling { Id = 1, Navn = "IT" },
+                new Afdeling { Id = 2, Navn = "HR" },
+                new Afdeling { Id = 3, Navn = "Finans" }
+            );
+
+            // Seed medarbejdere ved hjælp af AfdelingId fremmednøgle
+            modelBuilder.Entity<Medarbejder>().HasData(
+                new Medarbejder(1234567890, "JD", "Jeppe Johnsen", AfdelingMapper.Map(AfdelingRepository.GetAfdeling(1)), 1), // Refererer til "IT" afdeling
+                new Medarbejder(2345678901, "MH", "Morten Hansen", AfdelingMapper.Map(AfdelingRepository.GetAfdeling(2)), 2)  // Refererer til "HR" afdeling
+            );
 
             modelBuilder.Entity<Medarbejder>()
                 .HasKey(m => m.Initialer);
-
+                
             modelBuilder.Entity<Sag>()
                 .HasKey(s => s.SagsNr);
 
@@ -51,6 +58,9 @@ namespace DataAccess.Context
             modelBuilder.Entity<Medarbejder>()
                 .HasMany(m => m.TidsregList)
                 .WithOne(t => t.Medarbejder);
+
+            modelBuilder.Entity<Medarbejder>()
+                .HasOne(a => a.Afdeling);
 
             //modelBuilder.Entity<Sag>()
             //    .HasMany(s => s.TidsregList)

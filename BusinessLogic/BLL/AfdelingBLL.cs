@@ -18,14 +18,12 @@ namespace BusinessLogic.BLL
             }
             catch (KeyNotFoundException ex)
             {
-                // Håndter undtagelsen, f.eks. log fejl eller returnér en brugervenlig besked
                 throw new KeyNotFoundException($"Kunne ikke finde afdelingen: {ex.Message}");
             }
         }
 
         public void AddAfdeling(AfdelingDTO afdeling)
         {
-            // Tilføj forretningslogik: valider afdelingens data før tilføjelse
             if (string.IsNullOrEmpty(afdeling.Navn))
             {
                 throw new ArgumentException("Afdelingens navn skal udfyldes.");
@@ -36,7 +34,6 @@ namespace BusinessLogic.BLL
 
         public void EditAfdeling(AfdelingDTO afdeling)
         {
-            // Valider at nødvendige data er til stede
             if (string.IsNullOrEmpty(afdeling.Navn))
             {
                 throw new ArgumentException("Afdelingens navn skal udfyldes.");
@@ -60,7 +57,6 @@ namespace BusinessLogic.BLL
             }
             catch (KeyNotFoundException ex)
             {
-                // Behandle undtagelsen, hvis afdelingen ikke findes
                 throw new KeyNotFoundException($"Kunne ikke finde afdelingen: {ex.Message}");
             }
         }
