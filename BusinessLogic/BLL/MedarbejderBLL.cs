@@ -10,11 +10,11 @@ namespace BusinessLogic.BLL
 {
     public class MedarbejderBLL
     {
-        public MedarbejderDTO GetMedarbejder(string initialer)
+        public MedarbejderDTO GetMedarbejder(int id)
         {
             try
             {
-                return MedarbejderRepository.GetMedarbejder(initialer);
+                return MedarbejderRepository.GetMedarbejder(id);
             }
             catch (KeyNotFoundException ex)
             {
@@ -63,12 +63,11 @@ namespace BusinessLogic.BLL
             }
         }
 
-        public void DeleteMedarbejder(string initialer)
+        public void DeleteMedarbejder(int id)
         {
             try
             {
-
-                MedarbejderRepository.DeleteMedarbejder(initialer);
+                MedarbejderRepository.DeleteMedarbejder(id);
             }
             catch (KeyNotFoundException ex)
             {
@@ -81,19 +80,19 @@ namespace BusinessLogic.BLL
             return MedarbejderRepository.GetAllMedarbejdere();
         }
 
-        public List<TidsregistreringDTO> GetAllTidRegInMedarb(string initialier)
+        public List<TidsregistreringDTO> GetAllTidRegInMedarb(int id)
         {
-            return MedarbejderRepository.GetAllTidRegInMedarb(initialier);
+            return MedarbejderRepository.GetAllTidRegInMedarb(id);
         }
 
-        public void AddTidsregs(string initialer, TidsregistreringDTO tr)
+        public void AddTidsregs(int id, TidsregistreringDTO tr)
         {
             if (tr.StartTid == default || tr.SlutTid == default)
             {
                 throw new ArgumentException("Start- og sluttidspunkt skal udfyldes korrekt.");
             }
 
-            MedarbejderRepository.AddTidsReg(initialer, tr);
+            MedarbejderRepository.AddTidsReg(id, tr);
         }
 
         public void DeleteTidsregistrering(int id)

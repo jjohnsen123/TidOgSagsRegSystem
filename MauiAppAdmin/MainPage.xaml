@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppAdmin.MainPage">
 
+
     <StackLayout Padding="20">
+        <!-- Medarbejdere Section -->
         <Label Text="Medarbejdere" FontSize="Large" FontAttributes="Bold" />
         <CollectionView x:Name="MedarbejderListView" SelectionMode="Single">
             <CollectionView.ItemTemplate>
@@ -13,11 +15,25 @@
                         <Label Text=" - " />
                         <Label Text="{Binding Navn}" />
                         <Button Text="Rediger" Clicked="EditMedarbejderClicked" CommandParameter="{Binding}" />
+                        <Button Text="Slet" Clicked="DeleteMedarbejderClicked" CommandParameter="{Binding}" />
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
         <Button Text="Tilføj Medarbejder" Clicked="AddMedarbejderClicked" />
+
+        <!-- Afdelinger Section -->
+        <Label Text="Afdelinger" FontSize="Large" FontAttributes="Bold" Margin="0,20,0,0"/>
+        <CollectionView x:Name="AfdelingListView" SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{Binding Navn}" />
+                        <Button Text="Rediger" Clicked="EditAfdelingClicked" CommandParameter="{Binding}" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
         <Button Text="Tilføj Afdeling" Clicked="AddAfdelingClicked"/>
     </StackLayout>
 </ContentPage>

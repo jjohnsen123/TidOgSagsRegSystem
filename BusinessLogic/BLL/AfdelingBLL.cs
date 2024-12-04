@@ -10,11 +10,11 @@ namespace BusinessLogic.BLL
 {
     public class AfdelingBLL
     {
-        public AfdelingDTO GetAfdeling(int afdNr)
+        public AfdelingDTO GetAfdeling(int afdId)
         {
             try
             {
-                return AfdelingRepository.GetAfdeling(afdNr);
+                return AfdelingRepository.GetAfdeling(afdId);
             }
             catch (KeyNotFoundException ex)
             {
