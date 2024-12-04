@@ -47,19 +47,7 @@ namespace MauiAppAdmin
             var medarbejder = (sender as Button)?.CommandParameter as DTO.Model.MedarbejderDTO;
             if (medarbejder != null)
             {
-                bool confirmDelete = await DisplayAlert("Bekræft Sletning", $"Er du sikker på, at du vil slette {medarbejder.Navn}?", "Ja", "Nej");
-                if (confirmDelete)
-                {
-                    try
-                    {
-                        _medarbejderBLL.DeleteMedarbejder(medarbejder.Id);
-                        LoadMedarbAfd(); // Opdater listen efter sletning
-                    }
-                    catch (Exception ex)
-                    {
-                        await DisplayAlert("Fejl", ex.Message, "OK");
-                    }
-                }
+                // Navigation.PushAsync(new EditMedarbejderPage(medarbejder));
             }
         }
 
@@ -71,35 +59,6 @@ namespace MauiAppAdmin
         private void AddAfdelingClicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new AddAfdelingPage());
-        }
-
-        private void EditAfdelingClicked(object sender, EventArgs e)
-        {
-            var afdeling = (sender as Button)?.CommandParameter as DTO.Model.AfdelingDTO;
-            if (afdeling != null)
-            {
-                Navigation.PushAsync(new EditAfdelingPage(afdeling));
-            }
-        }
-        private async void DeleteAfdelingClicked(object sender, EventArgs e)
-        {
-            var afdeling = (sender as Button)?.CommandParameter as DTO.Model.AfdelingDTO;
-            if (afdeling != null)
-            {
-                bool confirmDelete = await DisplayAlert("Bekræft Sletning", $"Er du sikker på, at du vil slette {afdeling.Navn}?", "Ja", "Nej");
-                if (confirmDelete)
-                {
-                    try
-                    {
-                        _afdelingBLL.DeleteAfdeling(afdeling.Id);
-                        LoadMedarbAfd(); // Opdater listen efter sletning
-                    }
-                    catch (Exception ex)
-                    {
-                        await DisplayAlert("Fejl", ex.Message, "OK");
-                    }
-                }
-            }
         }
     }
 }
