@@ -5,12 +5,12 @@ namespace MauiAppAdmin;
 public partial class TidsregistreringPage : ContentPage
 {
     private MedarbejderBLL _medarbejderBLL = new MedarbejderBLL();
-    private string _medarbejderInitialer;
+    private int _medarbejderId;
 
-    public TidsregistreringPage(string initialer)
+    public TidsregistreringPage(int id)
     {
         InitializeComponent();
-        _medarbejderInitialer = initialer;
+        _medarbejderId = id;
         LoadTidsregistreringer();
     }
 
@@ -18,7 +18,7 @@ public partial class TidsregistreringPage : ContentPage
     {
         try
         {
-            var tidsregistreringer = _medarbejderBLL.GetAllTidRegInMedarb(_medarbejderInitialer);
+            var tidsregistreringer = _medarbejderBLL.GetAllTidRegInMedarb(_medarbejderId);
             TidsregListView.ItemsSource = tidsregistreringer;
         }
         catch (Exception ex)
@@ -29,7 +29,7 @@ public partial class TidsregistreringPage : ContentPage
 
     private void AddTidsregClicked(object sender, EventArgs e)
     {
-        Navigation.PushAsync(new TidsregistreringPage(_medarbejderInitialer));
+        Navigation.PushAsync(new TidsregistreringPage(_medarbejderId));
     }
 }
 

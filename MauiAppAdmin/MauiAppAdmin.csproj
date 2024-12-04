@@ -83,6 +83,12 @@
 	  <MauiXaml Update="AddMedarbejderPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="EditAfdelingPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="EditMedarbejderPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="TidsregistreringPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

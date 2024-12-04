@@ -10,6 +10,7 @@ namespace DTO.Model
 {
     public class MedarbejderDTO
     {
+        public int Id { get; set; }
         public double CprNr { get; set; }
         public string Initialer {  get; set; }
         public string Navn { get; set; }

@@ -3,21 +3,46 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppAdmin.MainPage">
 
-    <StackLayout Padding="20">
-        <Label Text="Medarbejdere" FontSize="Large" FontAttributes="Bold" />
-        <CollectionView x:Name="MedarbejderListView" SelectionMode="Single">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="{Binding Initialer}" />
-                        <Label Text=" - " />
-                        <Label Text="{Binding Navn}" />
-                        <Button Text="Rediger" Clicked="EditMedarbejderClicked" CommandParameter="{Binding}" />
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-        <Button Text="Tilføj Medarbejder" Clicked="AddMedarbejderClicked" />
-        <Button Text="Tilføj Afdeling" Clicked="AddAfdelingClicked"/>
-    </StackLayout>
+
+    <ScrollView>
+        <StackLayout Padding="20" MaximumWidthRequest="600" HorizontalOptions="Start">
+            <!-- Medarbejdere Section -->
+            <Label Text="Medarbejdere" FontSize="Large" FontAttributes="Bold" />
+            <CollectionView x:Name="MedarbejderListView" SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <ScrollView>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Initialer}" />
+                                <Label Text=" - " />
+                                <Label Text="{Binding Navn}" />
+                                <Button Text="Rediger" Clicked="EditMedarbejderClicked" CommandParameter="{Binding}" HorizontalOptions="End"/>
+                                <Button Text="Slet" Clicked="DeleteMedarbejderClicked" CommandParameter="{Binding}" HorizontalOptions="End"/>
+                            </StackLayout>
+                        </ScrollView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button Text="Tilføj Medarbejder" Clicked="AddMedarbejderClicked" />
+
+            <!-- Afdelinger Section -->
+            <Label Text="Afdelinger" FontSize="Large" FontAttributes="Bold" Margin="0,20,0,0"/>
+            <CollectionView x:Name="AfdelingListView" SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <ScrollView>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Navn}" />
+                                <Button Text="Rediger" Clicked="EditAfdelingClicked" CommandParameter="{Binding}" HorizontalOptions="End"/>
+                                <Button Text="Slet" Clicked="DeleteAfdelingClicked" CommandParameter="{Binding}" HorizontalOptions="End"/>
+                            </StackLayout>
+                        </ScrollView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button Text="Tilføj Afdeling" Clicked="AddAfdelingClicked"/>
+        </StackLayout>
+    </ScrollView>
+
 </ContentPage>
