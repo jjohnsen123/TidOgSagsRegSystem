@@ -18,5 +18,6 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
         <Button Text="Tilføj Medarbejder" Clicked="AddMedarbejderClicked" />
+        <Button Text="Tilføj Afdeling" Clicked="AddAfdelingClicked"/>
     </StackLayout>
 </ContentPage>

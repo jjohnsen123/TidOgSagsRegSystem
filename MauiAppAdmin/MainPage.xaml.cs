@@ -13,6 +13,12 @@ namespace MauiAppAdmin
             LoadMedarbejdere();
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            LoadMedarbejdere();
+        }
+
         private void LoadMedarbejdere()
         {
             try
@@ -39,6 +45,11 @@ namespace MauiAppAdmin
             {
                 // Navigation.PushAsync(new EditMedarbejderPage(medarbejder));
             }
+        }
+
+        private void AddAfdelingClicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new AddAfdelingPage());
         }
     }
 }

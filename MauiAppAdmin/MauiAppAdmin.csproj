@@ -77,6 +77,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="AddAfdelingPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="AddMedarbejderPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

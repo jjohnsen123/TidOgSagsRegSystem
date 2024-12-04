@@ -29,7 +29,7 @@ public partial class AddMedarbejderPage : ContentPage
         }
     }
 
-    private async void OnSaveClicked(object sender, EventArgs e)
+    private void OnSaveClicked(object sender, EventArgs e)
     {
         try
         {
@@ -38,26 +38,26 @@ public partial class AddMedarbejderPage : ContentPage
                 string.IsNullOrEmpty(CprEntry.Text) ||
                 AfdelingPicker.SelectedItem == null)
             {
-                await DisplayAlert("Fejl", "Alle felter skal udfyldes.", "OK");
+                DisplayAlert("Fejl", "Alle felter skal udfyldes.", "OK");
                 return;
             }
 
-            if (!long.TryParse(CprEntry.Text, out long cprNummer) || CprEntry.Text.Length != 10)
+            if (!long.TryParse(CprEntry.Text, out long cprNummer) /*|| CprEntry.Text.Length != 10*/)
             {
-                await DisplayAlert("Fejl", "CPR-nummer skal være 10 cifre.", "OK");
+                DisplayAlert("Fejl", "CPR-nummer skal være 10 cifre.", "OK");
                 return;
             }
 
             var valgtAfdeling = (AfdelingDTO)AfdelingPicker.SelectedItem;
 
-            var medarbejder = new MedarbejderDTO((int)cprNummer, InitialerEntry.Text, NavnEntry.Text, valgtAfdeling, valgtAfdeling.AfdelingId);
+            var medarbejder = new MedarbejderDTO(cprNummer, InitialerEntry.Text, NavnEntry.Text, valgtAfdeling.Id);
 
             _medarbejderBLL.AddMedarbejder(medarbejder);
-            await Navigation.PopAsync();
+            Navigation.PopAsync();
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Fejl", ex.Message, "OK");
+            DisplayAlert("Fejl", ex.Message, "OK");
         }
     }
 }

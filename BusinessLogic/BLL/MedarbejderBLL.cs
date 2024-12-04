@@ -29,6 +29,20 @@ namespace BusinessLogic.BLL
                 throw new ArgumentException("Medarbejderens initialer og navn skal udfyldes.");
             }
 
+            // Tjek om CPR eller Initialer allerede eksisterer
+            var eksisterendeMedarbejdere = GetAllMedarbejdere();
+            if (eksisterendeMedarbejdere.Exists(m => m.CprNr == ma.CprNr))
+            {
+                throw new Exception("En medarbejder med det samme CPR-nummer eksisterer allerede.");
+            }
+
+            if (eksisterendeMedarbejdere.Exists(m => m.Initialer == ma.Initialer))
+            {
+                throw new Exception("En medarbejder med de samme initialer eksisterer allerede.");
+            }
+
+
+
             MedarbejderRepository.AddMedarbejder(ma);
         }
 
@@ -53,6 +67,7 @@ namespace BusinessLogic.BLL
         {
             try
             {
+
                 MedarbejderRepository.DeleteMedarbejder(initialer);
             }
             catch (KeyNotFoundException ex)

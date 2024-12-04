@@ -13,28 +13,21 @@ namespace DTO.Model
         public double CprNr { get; set; }
         public string Initialer {  get; set; }
         public string Navn { get; set; }
-        [ForeignKey ("Afdeling")]
+        [ForeignKey ("AfdelingId")]
         public int AfdelingId { get; set; }
         public AfdelingDTO Afdeling { get; set; }
         public List<TidsregistreringDTO> TidsregList { get; set; } = new List<TidsregistreringDTO>();
 
 
-        public MedarbejderDTO(double cprNr, string initialer, string navn, AfdelingDTO afdeling, int afdNr)
+        public MedarbejderDTO(double cprNr, string initialer, string navn, int afdId)
         {
             CprNr = cprNr;
             Initialer = initialer;
             Navn = navn;
-            Afdeling = afdeling;
-            AfdelingId = afdNr;
+            AfdelingId = afdId;
+
         }
 
-        public MedarbejderDTO(double cprNr, string initialer, string navn, int afdelingId)
-        {
-            CprNr = cprNr;
-            Initialer = initialer;
-            Navn = navn;
-            AfdelingId = afdelingId;
-        }
 
         public MedarbejderDTO()
         {

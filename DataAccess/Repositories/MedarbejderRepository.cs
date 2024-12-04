@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,16 +28,25 @@ namespace DataAccess.Repositories
                 return MedarbejderMapper.Map(ma);
             }
         }
-
         public static void AddMedarbejder(MedarbejderDTO medarbejder)
         {
             using (TidSagRegDbContext context = new TidSagRegDbContext())
             {
-                Medarbejder ma = MedarbejderMapper.Map(medarbejder);
+                var ma = new Medarbejder
+                {
+                    CprNr = medarbejder.CprNr,
+                    Initialer = medarbejder.Initialer,
+                    Navn = medarbejder.Navn,
+                    AfdelingId = medarbejder.AfdelingId
+                };
+                var afd = context.Afdelinger.Find(ma.AfdelingId);
+
+                context.Attach(afd);
                 context.Medarbejdere.Add(ma);
                 context.SaveChanges();
             }
         }
+
 
         public static void EditMedarbejder(MedarbejderDTO maDTO)
         {
@@ -65,6 +75,7 @@ namespace DataAccess.Repositories
                 {
                     throw new KeyNotFoundException($"Medarbejder med initialer '{initialer}' blev ikke fundet.");
                 }
+
 
                 context.Medarbejdere.Remove(ma);
                 context.SaveChanges();

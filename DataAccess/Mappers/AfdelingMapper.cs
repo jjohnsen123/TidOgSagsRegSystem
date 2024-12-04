@@ -12,15 +12,15 @@ namespace DataAccess.Mappers
     {
         public static AfdelingDTO Map(Afdeling afd)
         {
-            var afdeling = new AfdelingDTO(afd.Id, afd.Navn);
+            var afdeling = new AfdelingDTO(afd.AfdelingId, afd.Navn);
 
-            //if (afd.MedarbList !=  null)
-            //{
-            //    foreach (var ma in afd.MedarbList)
-            //    {
-            //        afdeling.MedarbList.Add(MedarbejderMapper.Map(ma));
-            //    }
-            //}
+            if (afd.MedarbList != null)
+            {
+                foreach (var ma in afd.MedarbList)
+                {
+                    afdeling.MedarbList.Add(MedarbejderMapper.Map(ma));
+                }
+            }
 
             return afdeling;
 
@@ -28,15 +28,15 @@ namespace DataAccess.Mappers
 
         public static Afdeling Map(AfdelingDTO afd)
         {
-            var afdeling = new Afdeling(afd.AfdelingId, afd.Navn);
+            var afdeling = new Afdeling(afd.Id, afd.Navn);
 
-            //if (afd.MedarbList != null)
-            //{
-            //    foreach (var ma in afd.MedarbList)
-            //    {
-            //        afdeling.MedarbList.Add(MedarbejderMapper.Map(ma));
-            //    }
-            //}
+            if (afd.MedarbList != null)
+            {
+                foreach (var ma in afd.MedarbList)
+                {
+                    afdeling.MedarbList.Add(MedarbejderMapper.Map(ma));
+                }
+            }
 
             return afdeling;
         }
@@ -44,7 +44,6 @@ namespace DataAccess.Mappers
 
         public static void Update(Afdeling afd, AfdelingDTO afdDTO)
         {
-            afd.Id = afdDTO.AfdelingId;
             afd.Navn = afdDTO.Navn;
         }
     }

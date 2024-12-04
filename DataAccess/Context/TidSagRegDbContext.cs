@@ -26,28 +26,24 @@ namespace DataAccess.Context
         {
             optionsBuilder.UseSqlServer("Data Source=LAPTOP-ANE2D06V\\SQLEXPRESS;Initial Catalog=TidSagOgRegDB;Integrated Security=SSPI;TrustServerCertificate=true");
             optionsBuilder.LogTo(message  => Debug.WriteLine(message));
+            optionsBuilder.EnableSensitiveDataLogging();
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Afdeling>()
-                .HasKey(a => a.Id);
+                .HasKey(a => a.AfdelingId);
 
-            // Seed afdelinger
+            //Seed afdelinger
             modelBuilder.Entity<Afdeling>().HasData(
-                new Afdeling { Id = 1, Navn = "IT" },
-                new Afdeling { Id = 2, Navn = "HR" },
-                new Afdeling { Id = 3, Navn = "Finans" }
-            );
-
-            // Seed medarbejdere ved hjælp af AfdelingId fremmednøgle
-            modelBuilder.Entity<Medarbejder>().HasData(
-                new Medarbejder(1234567890, "JD", "Jeppe Johnsen", AfdelingMapper.Map(AfdelingRepository.GetAfdeling(1)), 1), // Refererer til "IT" afdeling
-                new Medarbejder(2345678901, "MH", "Morten Hansen", AfdelingMapper.Map(AfdelingRepository.GetAfdeling(2)), 2)  // Refererer til "HR" afdeling
+                new Afdeling(-1,"IT"),
+                new Afdeling(-2,"HR"),
+                new Afdeling(-3,"Finans")
             );
 
             modelBuilder.Entity<Medarbejder>()
-                .HasKey(m => m.Initialer);
+                .HasKey(m => m.Id);
                 
             modelBuilder.Entity<Sag>()
                 .HasKey(s => s.SagsNr);
@@ -59,8 +55,10 @@ namespace DataAccess.Context
                 .HasMany(m => m.TidsregList)
                 .WithOne(t => t.Medarbejder);
 
-            modelBuilder.Entity<Medarbejder>()
-                .HasOne(a => a.Afdeling);
+            //modelBuilder.Entity<Medarbejder>()
+            //    .HasOne(a => a.Afdeling)
+            //    .WithOne()
+            //    .HasForeignKey("Afdeling");
 
             //modelBuilder.Entity<Sag>()
             //    .HasMany(s => s.TidsregList)

@@ -8,14 +8,13 @@ namespace DTO.Model
 {
     public class AfdelingDTO
     {
-        public int AfdelingId { get; set; }
+        public int Id { get; set; }
         public string Navn { get; set; }
         public List<MedarbejderDTO> MedarbList { get; set; } = new List<MedarbejderDTO>();
 
-
-        public AfdelingDTO(int afdNr, string navn)
+        public AfdelingDTO(int id, string navn)
         {
-            AfdelingId = afdNr;
+            Id = id;
             Navn = navn;
         }
 

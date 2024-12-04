@@ -15,4 +15,5 @@
 
         <Button Text="Gem" Clicked="OnSaveClicked" />
     </StackLayout>
+    
 </ContentPage>

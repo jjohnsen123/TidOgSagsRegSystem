@@ -29,7 +29,7 @@ public partial class TidsregistreringPage : ContentPage
 
     private void AddTidsregClicked(object sender, EventArgs e)
     {
-        //await Navigation.PushAsync(new AddTidsregistreringPage(_medarbejderInitialer));
+        Navigation.PushAsync(new TidsregistreringPage(_medarbejderInitialer));
     }
 }
 
