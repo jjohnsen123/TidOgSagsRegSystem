@@ -1,0 +1,56 @@
+﻿@model DTO.Model.MedarbejderDTO
+@{
+    ViewBag.Title = "Detaljer for Medarbejder";
+}
+
+<h2>Detaljer for @Model.Navn</h2>
+
+<div>
+    <h4>Medarbejder</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Initialer
+        </dt>
+        <dd>
+            @Model.Initialer
+        </dd>
+        <dt>
+            Navn
+        </dt>
+        <dd>
+            @Model.Navn
+        </dd>
+    </dl>
+</div>
+<hr />
+<h3>Tidsregistreringer</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Sag
+            </th>
+            <th>
+                Starttid
+            </th>
+            <th>
+                Sluttid
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var tr in ViewBag.Tidsregistreringer)
+        {
+            <tr>
+                <td>@tr.SagId</td>
+                <td>@tr.StartTid.ToString("dd-MM-yyyy HH:mm")</td>
+                <td>@tr.SlutTid.ToString("dd-MM-yyyy HH:mm")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>
+    @Html.ActionLink("Opret Tidsregistrering", "Create", "Tidsregistrering", new { medarbejderId = Model.Id }, new { @class = "btn btn-primary" })
+</p>

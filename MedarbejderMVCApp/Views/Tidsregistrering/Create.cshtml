@@ -1,0 +1,48 @@
+﻿@model DTO.Model.TidsregistreringDTO
+@{
+    ViewBag.Title = "Opret Tidsregistrering";
+}
+
+<h2>Opret Tidsregistrering for @ViewBag.Medarbejder.Navn</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Tidsregistrering</h4>
+        <hr />
+
+        @Html.HiddenFor(model => model.MedarbejderId)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SagId, "Sag", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.SagId, (SelectList)ViewBag.Sager, "Vælg Sag", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SagId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StartTid, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.StartTid, new { @class = "form-control", type = "datetime-local" })
+                @Html.ValidationMessageFor(model => model.StartTid, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SlutTid, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.SlutTid, new { @class = "form-control", type = "datetime-local" })
+                @Html.ValidationMessageFor(model => model.SlutTid, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Gem" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
