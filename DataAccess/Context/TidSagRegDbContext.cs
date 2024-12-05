@@ -49,7 +49,7 @@ namespace DataAccess.Context
                 .HasKey(s => s.SagsNr);
 
             modelBuilder.Entity<Tidsregistrering>()
-                .HasKey(t => t.TidregId);
+                .HasKey(t => t.Id);
 
             modelBuilder.Entity<Medarbejder>()
                 .HasMany(m => m.TidsregList)

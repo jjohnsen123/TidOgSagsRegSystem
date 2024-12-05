@@ -14,6 +14,7 @@
         </Picker>
 
         <Button Text="Gem" Clicked="OnSaveClicked" />
+        <Button Text="Annuller" Clicked="OnCancelClicked" />
     </StackLayout>
     
 </ContentPage>

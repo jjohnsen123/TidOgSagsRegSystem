@@ -18,7 +18,7 @@ namespace DataAccess.Mappers
                 Initialer = ma.Initialer,
                 Navn = ma.Navn,
                 AfdelingId = ma.AfdelingId,
-                Id = ma.Id,                
+                Id = ma.Id
             };
 
             if (ma.TidsregList != null)
@@ -40,7 +40,7 @@ namespace DataAccess.Mappers
                 Initialer = ma.Initialer,
                 Navn = ma.Navn,
                 AfdelingId = ma.AfdelingId,
-                Id = ma.Id,
+                Id = ma.Id
             };
 
             if (ma.TidsregList != null)

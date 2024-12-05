@@ -8,17 +8,16 @@ namespace DTO.Model
 {
     public class TidsregistreringDTO
     {
-        public int TidregId { get; set; }
-        public MedarbejderDTO Medarbejder { get; set; }
-        public SagDTO? Sag { get; set; }
+        public int Id { get; set; }
+        public int MedarbejderId { get; set; }
+        public int? SagId { get; set; }
         public DateTime StartTid { get; set; }
         public DateTime SlutTid { get; set; }
 
-        public TidsregistreringDTO(int id, MedarbejderDTO medarbejder, SagDTO? sag, DateTime startTid, DateTime slutTid)
+        public TidsregistreringDTO(int medarbId, int? sagId, DateTime startTid, DateTime slutTid)
         {
-            TidregId = id;
-            Medarbejder = medarbejder;
-            Sag = sag;
+            MedarbejderId = medarbId;
+            SagId = sagId;
             StartTid = startTid;
             SlutTid = slutTid;
         }

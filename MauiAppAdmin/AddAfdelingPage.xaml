@@ -19,5 +19,6 @@
                FontSize="Small"
                TextColor="Red"/>
 
+        <Button Text="Anuller" Clicked="OnCancelClicked"/>
     </VerticalStackLayout>
 </ContentPage>

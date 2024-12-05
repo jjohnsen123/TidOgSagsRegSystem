@@ -3,13 +3,12 @@ using DTO.Model;
 
 namespace MauiAppAdmin;
 
-public partial class AddMedarbejderPage : ContentPage
+public partial class AddSagPage : ContentPage
 {
-    private MedarbejderBLL _medarbejderBLL = new MedarbejderBLL();
+    private SagBLL _sagBLL = new SagBLL();
     private AfdelingBLL _afdelingBLL = new AfdelingBLL();
 
-
-    public AddMedarbejderPage()
+    public AddSagPage()
     {
         InitializeComponent();
         LoadAfdelinger();
@@ -33,26 +32,20 @@ public partial class AddMedarbejderPage : ContentPage
     {
         try
         {
-            if (string.IsNullOrEmpty(NavnEntry.Text) ||
-                string.IsNullOrEmpty(InitialerEntry.Text) ||
-                string.IsNullOrEmpty(CprEntry.Text) ||
-                AfdelingPicker.SelectedItem == null)
+            if (string.IsNullOrEmpty(OverskriftEntry.Text) || AfdelingPicker.SelectedItem == null)
             {
-                DisplayAlert("Fejl", "Alle felter skal udfyldes.", "OK");
-                return;
-            }
-
-            if (!long.TryParse(CprEntry.Text, out long cprNummer) /*|| CprEntry.Text.Length != 10*/)
-            {
-                DisplayAlert("Fejl", "CPR-nummer skal være 10 cifre.", "OK");
+                DisplayAlert("Fejl", "Overskrift og Afdeling skal udfyldes.", "OK");
                 return;
             }
 
             var valgtAfdeling = (AfdelingDTO)AfdelingPicker.SelectedItem;
 
-            var medarbejder = new MedarbejderDTO(cprNummer, InitialerEntry.Text, NavnEntry.Text, valgtAfdeling.Id);
+            // Skaber en ny SagDTO og bruger valgt afdelingens Id
+            var sag = new SagDTO(OverskriftEntry.Text, BeskrivelseEditor.Text, valgtAfdeling.Id);
 
-            _medarbejderBLL.AddMedarbejder(medarbejder);
+            _sagBLL.AddSag(sag);
+
+            // Naviger tilbage efter gem
             Navigation.PopAsync();
         }
         catch (Exception ex)

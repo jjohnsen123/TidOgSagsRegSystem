@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppAdmin.AddSagPage"
+             Title="Tilføj Sag">
+
+    <ScrollView>
+        <StackLayout Padding="20" MaximumWidthRequest="600" HorizontalOptions="Start">
+            <Entry x:Name="OverskriftEntry" Placeholder="Sagsoverskrift" />
+            <Editor x:Name="BeskrivelseEditor" Placeholder="Beskrivelse" HeightRequest="100" />
+
+            <Label Text="Vælg Afdeling" FontAttributes="Bold" Margin="0,20,0,0"/>
+            <Picker x:Name="AfdelingPicker" Title="Afdeling">
+                <!-- Afdelinger vil blive indlæst programmatisk -->
+            </Picker>
+
+            <Button Text="Gem" Clicked="OnSaveClicked" />
+            <Button Text="Annuller" Clicked="OnCancelClicked" />
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

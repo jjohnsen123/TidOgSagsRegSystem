@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppAdmin.MedarbejderDetailPage"
+             Title="Medarbejder Detaljer">
+
+    <StackLayout Padding="20">
+        <!-- Medarbejder detaljer -->
+        <Label Text="Medarbejder Detaljer" FontSize="Large" FontAttributes="Bold" />
+        <Label Text="Navn: " />
+        <Label x:Name="NavnLabel" FontAttributes="Bold" />
+
+        <Label Text="Initialer: " />
+        <Label x:Name="InitialerLabel" FontAttributes="Bold" />
+
+        <Label Text="CPR-Nummer: " />
+        <Label x:Name="CprLabel" FontAttributes="Bold" />
+
+        <Label Text="Afdeling: " />
+        <Label x:Name="AfdelingLabel" FontAttributes="Bold" />
+
+        <!-- Tidsregistreringer pr. uge -->
+        <Label Text="Tidsregistreringer pr. uge" FontSize="Large" FontAttributes="Bold" Margin="0,20,0,0"/>
+        <CollectionView x:Name="WeeklyRegistrationsList" SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Orientation="Horizontal" Padding="5">
+                        <Label Text="{Binding StartTid, StringFormat='dd-MM-yyyy HH:mm'}" />
+                        <Label Text=" - " />
+                        <Label Text="{Binding SlutTid, StringFormat='dd-MM-yyyy HH:mm'}" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Tidsregistreringer pr. måned -->
+        <Label Text="Tidsregistreringer pr. måned" FontSize="Large" FontAttributes="Bold" Margin="0,20,0,0"/>
+        <CollectionView x:Name="MonthlyRegistrationsList" SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Orientation="Horizontal" Padding="5">
+                        <Label Text="{Binding StartTid, StringFormat='dd-MM-yyyy HH:mm'}" />
+                        <Label Text=" - " />
+                        <Label Text="{Binding SlutTid, StringFormat='dd-MM-yyyy HH:mm'}" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Total tid -->
+        <Label Text="Total Tid Registreret" FontSize="Large" FontAttributes="Bold" Margin="0,20,0,0"/>
+        <Label x:Name="TotalTimeLabel" FontSize="Medium" FontAttributes="Bold" />
+
+        <Button Text="Tilbage" Clicked="OnCancelClicked" />
+    </StackLayout>
+</ContentPage>

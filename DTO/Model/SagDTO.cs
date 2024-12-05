@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,16 +12,17 @@ namespace DTO.Model
         public int SagsNr { get; set; }
         public string Overskrift {  get; set; }
         public string Beskrivelse { get; set; }
+        [ForeignKey ("AfdelingId")]
+        public int AfdelingId { get; set; }
         public AfdelingDTO Afd { get; set; }
         public List<TidsregistreringDTO> TidsregList { get; set; } = new List<TidsregistreringDTO>();
 
 
-        public SagDTO(int sagsNr, string overskrift, string beskrivelse, AfdelingDTO afd)
+        public SagDTO(string overskrift, string beskrivelse, int afdId)
         {
-            SagsNr = sagsNr;
             Overskrift = overskrift;
             Beskrivelse = beskrivelse;
-            Afd = afd;
+            AfdelingId = afdId;
         }
 
         public SagDTO()

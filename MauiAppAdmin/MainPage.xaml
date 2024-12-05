@@ -6,21 +6,22 @@
 
     <ScrollView>
         <StackLayout Padding="20" MaximumWidthRequest="600" HorizontalOptions="Start">
+
             <!-- Medarbejdere Section -->
             <Label Text="Medarbejdere" FontSize="Large" FontAttributes="Bold" />
             <CollectionView x:Name="MedarbejderListView" SelectionMode="Single">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-
-                        <ScrollView>
-                            <StackLayout Orientation="Horizontal">
+                        <Grid ColumnDefinitions="*, Auto, Auto" Padding="0,10">
+                            <StackLayout Grid.Column="0" Orientation="Horizontal" VerticalOptions="Center">
                                 <Label Text="{Binding Initialer}" />
                                 <Label Text=" - " />
                                 <Label Text="{Binding Navn}" />
-                                <Button Text="Rediger" Clicked="EditMedarbejderClicked" CommandParameter="{Binding}" HorizontalOptions="End"/>
-                                <Button Text="Slet" Clicked="DeleteMedarbejderClicked" CommandParameter="{Binding}" HorizontalOptions="End"/>
                             </StackLayout>
-                        </ScrollView>
+                            <Button Text="Vis Detaljer" Clicked="ViewDetailsClicked" CommandParameter="{Binding}" Grid.Column="1" HorizontalOptions="End"/>
+                            <Button Text="Rediger" Clicked="EditMedarbejderClicked" CommandParameter="{Binding}" Grid.Column="2" HorizontalOptions="End"/>
+                            <Button Text="Slet" Clicked="DeleteMedarbejderClicked" CommandParameter="{Binding}" Grid.Column="3" HorizontalOptions="End"/>
+                        </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
@@ -31,18 +32,34 @@
             <CollectionView x:Name="AfdelingListView" SelectionMode="Single">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <ScrollView>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Navn}" />
-                                <Button Text="Rediger" Clicked="EditAfdelingClicked" CommandParameter="{Binding}" HorizontalOptions="End"/>
-                                <Button Text="Slet" Clicked="DeleteAfdelingClicked" CommandParameter="{Binding}" HorizontalOptions="End"/>
-                            </StackLayout>
-                        </ScrollView>
+                        <Grid ColumnDefinitions="*, Auto, Auto" Padding="0,10">
+                            <Label Text="{Binding Navn}" Grid.Column="0" VerticalOptions="Center" />
+                            <Button Text="Rediger" Clicked="EditAfdelingClicked" CommandParameter="{Binding}" Grid.Column="1" HorizontalOptions="End"/>
+                            <Button Text="Slet" Clicked="DeleteAfdelingClicked" CommandParameter="{Binding}" Grid.Column="2" HorizontalOptions="End"/>
+                        </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
             <Button Text="Tilføj Afdeling" Clicked="AddAfdelingClicked"/>
+
+            <!-- Sager Section -->
+            <Label Text="Sager" FontSize="Large" FontAttributes="Bold" Margin="0,20,0,0"/>
+            <CollectionView x:Name="SagListView" SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="*, Auto, Auto" Padding="0,10">
+                            <StackLayout Grid.Column="0" Orientation="Horizontal" VerticalOptions="Center">
+                                <Label Text="{Binding Overskrift}" />
+                                <Label Text=" - " />
+                                <Label Text="{Binding Beskrivelse}" />
+                            </StackLayout>
+                            <Button Text="Rediger" Clicked="EditSagClicked" CommandParameter="{Binding}" Grid.Column="1" HorizontalOptions="End"/>
+                            <Button Text="Slet" Clicked="DeleteSagClicked" CommandParameter="{Binding}" Grid.Column="2" HorizontalOptions="End"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button Text="Tilføj Sag" Clicked="AddSagClicked"/>
         </StackLayout>
     </ScrollView>
-
 </ContentPage>

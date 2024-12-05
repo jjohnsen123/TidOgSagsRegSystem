@@ -137,13 +137,14 @@ namespace DataAccess.Repositories
             using (TidSagRegDbContext context = new TidSagRegDbContext())
             {
                 var tr = context.Tidsregistreringer.Find(id);
+                var medarb = context.Medarbejdere.Find(id);
 
                 if (tr == null)
                 {
                     throw new KeyNotFoundException($"Tidsregistrering med id '{id}' blev ikke fundet.");
                 }
 
-                tr.Medarbejder.TidsregList.Remove(tr);
+                medarb.TidsregList.Remove(tr);
                 context.Tidsregistreringer.Remove(tr);
                 context.SaveChanges();
             }

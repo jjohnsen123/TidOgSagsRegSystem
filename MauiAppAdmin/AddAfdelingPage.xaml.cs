@@ -43,4 +43,8 @@ public partial class AddAfdelingPage : ContentPage
 
         await Navigation.PopAsync();
     }
+    private void OnCancelClicked(object sender, EventArgs e)
+    {
+        Navigation.PopAsync();
+    }
 }

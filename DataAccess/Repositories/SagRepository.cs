@@ -40,7 +40,7 @@ namespace DataAccess.Repositories
         {
             using (TidSagRegDbContext context = new TidSagRegDbContext())
             {
-                var sag = context.Sager.Find(sagDTO);
+                var sag = context.Sager.Find(sagDTO.SagsNr);
 
                 if (sag == null)
                 {
@@ -57,7 +57,7 @@ namespace DataAccess.Repositories
         {
             using (TidSagRegDbContext context = new TidSagRegDbContext())
             {
-                var sag = context.Sager.FirstOrDefault(s => s.SagsNr == sagsNr);
+                var sag = context.Sager.Find(sagsNr);
 
                 if (sag == null)
                 {

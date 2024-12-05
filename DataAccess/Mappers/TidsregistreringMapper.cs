@@ -12,12 +12,12 @@ namespace DataAccess.Mappers
     {
         public static TidsregistreringDTO Map(Tidsregistrering tr)
         {
-            return new TidsregistreringDTO(tr.TidregId, MedarbejderMapper.Map(tr.Medarbejder), SagMapper.Map(tr.Sag), tr.StartTid, tr.SlutTid);
+            return new TidsregistreringDTO(tr.MedarbejderId, tr.SagId, tr.StartTid, tr.SlutTid);
         }
 
         public static Tidsregistrering Map(TidsregistreringDTO tr)
         {
-            return new Tidsregistrering(tr.TidregId, MedarbejderMapper.Map(tr.Medarbejder), SagMapper.Map(tr.Sag), tr.StartTid, tr.SlutTid);
+            return new Tidsregistrering(tr.MedarbejderId, tr.SagId, tr.StartTid, tr.SlutTid);
         }
     }
 }
