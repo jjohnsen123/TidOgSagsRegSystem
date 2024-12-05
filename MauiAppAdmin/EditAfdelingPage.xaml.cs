@@ -42,4 +42,8 @@ public partial class EditAfdelingPage : ContentPage
             await DisplayAlert("Fejl", ex.Message, "OK");
         }
     }
+    private void OnCancelClicked(object sender, EventArgs e)
+    {
+        Navigation.PopAsync();
+    }
 }

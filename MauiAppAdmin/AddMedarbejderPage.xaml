@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppAdmin.AddMedarbejderPage"
              Title="Tilføj Medarbejder">
-    <StackLayout Padding="20">
+    <StackLayout Margin="40">
         <Entry x:Name="NavnEntry" Placeholder="Navn" />
         <Entry x:Name="InitialerEntry" Placeholder="Initialer" />
         <Entry x:Name="CprEntry" Placeholder="CPR-nummer" Keyboard="Numeric" />
@@ -13,8 +13,8 @@
             <!-- Afdelinger vil blive indlæst programmatisk -->
         </Picker>
 
-        <Button Text="Gem" Clicked="OnSaveClicked" />
-        <Button Text="Annuller" Clicked="OnCancelClicked" />
+        <Button Text="Gem" Clicked="OnSaveClicked" Margin="0,10,0,10"/>
+        <Button Text="Tilbage" Clicked="OnCancelClicked" />
     </StackLayout>
     
 </ContentPage>

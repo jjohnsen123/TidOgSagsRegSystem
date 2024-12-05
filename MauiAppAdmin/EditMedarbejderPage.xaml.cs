@@ -81,4 +81,9 @@ public partial class EditMedarbejderPage : ContentPage
             DisplayAlert("Fejl", ex.Message, "OK");
         }
     }
+
+    private void OnCancelClicked(object sender, EventArgs e)
+    {
+        Navigation.PopAsync();
+    }
 }

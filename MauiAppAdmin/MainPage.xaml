@@ -1,26 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiAppAdmin.MainPage">
+             x:Class="MauiAppAdmin.MainPage"
+             Title="Admin Oversigt">
 
 
     <ScrollView>
-        <StackLayout Padding="20" MaximumWidthRequest="600" HorizontalOptions="Start">
+        <StackLayout Margin="40" >
 
             <!-- Medarbejdere Section -->
             <Label Text="Medarbejdere" FontSize="Large" FontAttributes="Bold" />
             <CollectionView x:Name="MedarbejderListView" SelectionMode="Single">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid ColumnDefinitions="*, Auto, Auto" Padding="0,10">
+                        <Grid ColumnDefinitions="*, Auto, Auto, Auto" Padding="0,10">
                             <StackLayout Grid.Column="0" Orientation="Horizontal" VerticalOptions="Center">
                                 <Label Text="{Binding Initialer}" />
-                                <Label Text=" - " />
+                                <Label Text=" - " Padding="5,0,5,0"/>
                                 <Label Text="{Binding Navn}" />
                             </StackLayout>
-                            <Button Text="Vis Detaljer" Clicked="ViewDetailsClicked" CommandParameter="{Binding}" Grid.Column="1" HorizontalOptions="End"/>
-                            <Button Text="Rediger" Clicked="EditMedarbejderClicked" CommandParameter="{Binding}" Grid.Column="2" HorizontalOptions="End"/>
-                            <Button Text="Slet" Clicked="DeleteMedarbejderClicked" CommandParameter="{Binding}" Grid.Column="3" HorizontalOptions="End"/>
+                            <Button Text="Vis Detaljer" Clicked="ViewDetailsClicked" CommandParameter="{Binding}" Grid.Column="1" HorizontalOptions="End" Margin="2,0"/>
+                            <Button Text="Rediger" Clicked="EditMedarbejderClicked" CommandParameter="{Binding}" Grid.Column="2" HorizontalOptions="End" Margin="2,0"/>
+                            <Button Text="Slet" Clicked="DeleteMedarbejderClicked" CommandParameter="{Binding}" Grid.Column="3" HorizontalOptions="End" Margin="2,0"/>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
@@ -34,8 +35,8 @@
                     <DataTemplate>
                         <Grid ColumnDefinitions="*, Auto, Auto" Padding="0,10">
                             <Label Text="{Binding Navn}" Grid.Column="0" VerticalOptions="Center" />
-                            <Button Text="Rediger" Clicked="EditAfdelingClicked" CommandParameter="{Binding}" Grid.Column="1" HorizontalOptions="End"/>
-                            <Button Text="Slet" Clicked="DeleteAfdelingClicked" CommandParameter="{Binding}" Grid.Column="2" HorizontalOptions="End"/>
+                            <Button Text="Rediger" Clicked="EditAfdelingClicked" CommandParameter="{Binding}" Grid.Column="1" HorizontalOptions="End" Margin="2,0"/>
+                            <Button Text="Slet" Clicked="DeleteAfdelingClicked" CommandParameter="{Binding}" Grid.Column="2" HorizontalOptions="End" Margin="2,0"/>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
@@ -53,8 +54,8 @@
                                 <Label Text=" - " />
                                 <Label Text="{Binding Beskrivelse}" />
                             </StackLayout>
-                            <Button Text="Rediger" Clicked="EditSagClicked" CommandParameter="{Binding}" Grid.Column="1" HorizontalOptions="End"/>
-                            <Button Text="Slet" Clicked="DeleteSagClicked" CommandParameter="{Binding}" Grid.Column="2" HorizontalOptions="End"/>
+                            <Button Text="Rediger" Clicked="EditSagClicked" CommandParameter="{Binding}" Grid.Column="1" HorizontalOptions="End" Margin="2,0"/>
+                            <Button Text="Slet" Clicked="DeleteSagClicked" CommandParameter="{Binding}" Grid.Column="2" HorizontalOptions="End" Margin="2,0"/>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

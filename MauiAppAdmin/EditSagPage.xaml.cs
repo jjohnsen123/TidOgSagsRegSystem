@@ -62,5 +62,10 @@ public partial class EditSagPage : ContentPage
             DisplayAlert("Fejl", ex.Message, "OK");
         }
     }
+
+    private void OnCancelClicked(object sender, EventArgs e)
+    {
+        Navigation.PopAsync();
+    }
 }
 

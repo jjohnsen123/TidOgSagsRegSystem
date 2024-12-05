@@ -32,9 +32,9 @@ public partial class AddSagPage : ContentPage
     {
         try
         {
-            if (string.IsNullOrEmpty(OverskriftEntry.Text) || AfdelingPicker.SelectedItem == null)
+            if (string.IsNullOrEmpty(OverskriftEntry.Text) || string.IsNullOrEmpty(BeskrivelseEditor.Text))
             {
-                DisplayAlert("Fejl", "Overskrift og Afdeling skal udfyldes.", "OK");
+                DisplayAlert("Fejl", "Overskrift og Beskrivelse skal udfyldes.", "OK");
                 return;
             }
 
