@@ -1,3 +1,4 @@
+using BusinessLogic.BLL;
 using MedarbejderMVCApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -6,27 +7,26 @@ namespace MedarbejderMVCApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private MedarbejderBLL _medarbejderBLL = new MedarbejderBLL();
+        private AfdelingBLL _afdelingBLL = new AfdelingBLL();
 
-        public HomeController(ILogger<HomeController> logger)
+        // GET: Home
+        public ActionResult Index()
         {
-            _logger = logger;
+            var medarbejdere = _medarbejderBLL.GetAllMedarbejdere();
+            var afdelinger = _afdelingBLL.GetAllAfdelinger();
+            foreach (var medarbejder in medarbejdere)
+            {
+                medarbejder.Afdeling = afdelinger.FirstOrDefault(a => a.Id == medarbejder.AfdelingId);
+            }
+
+            return View(medarbejdere);
         }
 
-        public IActionResult Index()
+        public IActionResult CreateTidsregistrering(int medarbejderId)
         {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            // Send medarbejderId videre til oprettelse af tidsregistrering
+            return RedirectToAction("Create", "Tidsregistrering", new { medarbejderId = medarbejderId });
         }
     }
 }

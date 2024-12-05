@@ -1,0 +1,28 @@
+﻿@model MedarbejderMVCApp.ViewModels.CreateTidsregistreringViewModel
+
+<h2>Opret Tidsregistrering for @Model.Medarbejder.Navn</h2>
+
+<form action="/Tidsregistrering/CreateTidsregistrering" method="post">
+    <div class="form-group">
+        <label for="SagId">Vælg Sag:</label>
+        <select name="Tidsregistrering.SagId" class="form-control">
+            @foreach (var sag in Model.Sager)
+            {
+                <option value="@sag.SagsNr">@sag.Overskrift</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="StartTid">Start Tid:</label>
+        <input type="datetime-local" name="Tidsregistrering.StartTid" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="SlutTid">Slut Tid:</label>
+        <input type="datetime-local" name="Tidsregistrering.SlutTid" class="form-control" />
+    </div>
+
+    <input type="hidden" name="Tidsregistrering.MedarbejderId" value="@Model.Tidsregistrering.MedarbejderId" />
+
+    <button type="submit" class="btn btn-primary">Gem Tidsregistrering</button>
+    <a href="/Home/Index" class="btn btn-secondary">Annuller</a>
+</form>

@@ -1,5 +1,6 @@
 ﻿using BusinessLogic.BLL;
 using DTO.Model;
+using MedarbejderMVCApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -7,37 +8,37 @@ namespace MedarbejderMVCApp.Controllers
 {
     public class TidsregistreringController : Controller
     {
-        private MedarbejderBLL _medarbejderBLL = new MedarbejderBLL();
         private SagBLL _sagBLL = new SagBLL();
+        private MedarbejderBLL _medarbejderBLL = new MedarbejderBLL();
 
-        // GET: Tidsregistrering/Create
-        public ActionResult Create(int medarbejderId)
+        [HttpGet]
+        public IActionResult CreateTidsregistrering(int medarbejderId)
         {
+            // Hent medarbejderen
             var medarbejder = _medarbejderBLL.GetMedarbejder(medarbejderId);
-            ViewBag.Medarbejder = medarbejder;
-            ViewBag.Sager = new SelectList(_sagBLL.GetAllSager(), "Id", "Overskrift");
-            return View();
+
+            // Opret en ViewModel for at inkludere både medarbejderinfo og sager
+            var sager = _sagBLL.GetAllSager();
+
+            var viewModel = new CreateTidsregistreringViewModel
+            {
+                Medarbejder = medarbejder,
+                Sager = sager,
+                Tidsregistrering = new TidsregistreringDTO { MedarbejderId = medarbejderId }
+            };
+
+            return View(viewModel);
         }
 
-        // POST: Tidsregistrering/Create
         [HttpPost]
-        public ActionResult Create(TidsregistreringDTO tidsregistrering)
+        public IActionResult CreateTidsregistrering(CreateTidsregistreringViewModel viewModel)
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
-                    _medarbejderBLL.AddTidsregs(tidsregistrering.MedarbejderId, tidsregistrering);
-                    return RedirectToAction("Details", "Medarbejder", new { id = tidsregistrering.MedarbejderId });
-                }
-                ViewBag.Sager = new SelectList(_sagBLL.GetAllSager(), "Id", "Overskrift", tidsregistrering.SagId);
-                return View(tidsregistrering);
+                _medarbejderBLL.AddTidsregs(viewModel.Tidsregistrering.MedarbejderId, viewModel.Tidsregistrering);
+                return RedirectToAction("Index", "Home");
             }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError("", ex.Message);
-                return View(tidsregistrering);
-            }
+            return View(viewModel);
         }
     }
 }
