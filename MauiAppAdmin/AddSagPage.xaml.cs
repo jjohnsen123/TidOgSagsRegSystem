@@ -32,9 +32,11 @@ public partial class AddSagPage : ContentPage
     {
         try
         {
-            if (string.IsNullOrEmpty(OverskriftEntry.Text) || string.IsNullOrEmpty(BeskrivelseEditor.Text))
+            if (string.IsNullOrEmpty(OverskriftEntry.Text) ||
+                string.IsNullOrEmpty(BeskrivelseEditor.Text) ||
+                AfdelingPicker.SelectedItem == null)
             {
-                DisplayAlert("Fejl", "Overskrift og Beskrivelse skal udfyldes.", "OK");
+                DisplayAlert("Fejl", "Alle felter skal udfyldes.", "OK");
                 return;
             }
 
@@ -43,7 +45,6 @@ public partial class AddSagPage : ContentPage
             var sag = new SagDTO(OverskriftEntry.Text, BeskrivelseEditor.Text, valgtAfdeling.Id);
 
             _sagBLL.AddSag(sag);
-
             Navigation.PopAsync();
         }
         catch (Exception ex)

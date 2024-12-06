@@ -92,6 +92,11 @@ namespace BusinessLogic.BLL
                 throw new ArgumentException("Start- og sluttidspunkt skal udfyldes korrekt.");
             }
 
+            if (tr.StartTid >= tr.SlutTid)
+            {
+                throw new ArgumentException("Starttidspunkt skal være før sluttidspunkt.");
+            }
+
             MedarbejderRepository.AddTidsReg(id, tr);
         }
 

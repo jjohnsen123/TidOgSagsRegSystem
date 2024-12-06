@@ -39,20 +39,22 @@ public partial class EditSagPage : ContentPage
 
     private void OnSaveClicked(object sender, EventArgs e)
     {
-        if (string.IsNullOrEmpty(OverskriftEntry.Text) || string.IsNullOrEmpty(BeskrivelseEntry.Text))
-        {
-            DisplayAlert("Fejl", "Tekstfelter skal udfyldes.", "OK");
-            return;
-        }
-
-        var valgtAfdeling = (AfdelingDTO)AfdelingPicker.SelectedItem;
-
-        _sag.Overskrift = OverskriftEntry.Text;
-        _sag.Beskrivelse = BeskrivelseEntry.Text;
-        _sag.AfdelingId = valgtAfdeling.Id;
-
         try
         {
+            if (string.IsNullOrEmpty(OverskriftEntry.Text) ||
+                string.IsNullOrEmpty(BeskrivelseEntry.Text) ||
+                AfdelingPicker.SelectedItem == null)
+            {
+                DisplayAlert("Fejl", "Alle felter skal udfyldes.", "OK");
+                return;
+            }
+
+            var valgtAfdeling = (AfdelingDTO)AfdelingPicker.SelectedItem;
+
+            _sag.Overskrift = OverskriftEntry.Text;
+            _sag.Beskrivelse = BeskrivelseEntry.Text;
+            _sag.AfdelingId = valgtAfdeling.Id;
+
             _sagBLL.EditSag(_sag);
             Navigation.PopAsync();
         }

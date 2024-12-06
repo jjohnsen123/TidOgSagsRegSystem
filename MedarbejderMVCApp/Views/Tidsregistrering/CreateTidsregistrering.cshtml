@@ -3,10 +3,12 @@
 <h2>Opret Tidsregistrering for @Model.Medarbejder.Navn</h2>
 
 <form action="/Tidsregistrering/CreateTidsregistrering" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
     <div class="form-group">
         <label for="SagId">Vælg Sag (valgfrit):</label>
         <select name="Tidsregistrering.SagId" class="form-control">
-            <option value="">Ingen Sag</option> <!-- Option til ingen sag -->
+            <option value="">Ingen Sag</option>
             @foreach (var sag in Model.Sager)
             {
                 <option value="@sag.Id">@sag.Overskrift</option>
@@ -16,10 +18,12 @@
     <div class="form-group">
         <label for="StartTid">Start Tid:</label>
         <input type="datetime-local" name="Tidsregistrering.StartTid" class="form-control" required />
+
     </div>
     <div class="form-group">
         <label for="SlutTid">Slut Tid:</label>
         <input type="datetime-local" name="Tidsregistrering.SlutTid" class="form-control" required />
+
     </div>
 
     <input type="hidden" name="Tidsregistrering.MedarbejderId" value="@Model.Tidsregistrering.MedarbejderId" />
