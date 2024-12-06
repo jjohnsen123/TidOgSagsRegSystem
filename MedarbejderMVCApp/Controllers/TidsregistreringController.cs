@@ -14,10 +14,7 @@ namespace MedarbejderMVCApp.Controllers
         [HttpGet]
         public IActionResult CreateTidsregistrering(int medarbejderId)
         {
-            // Hent medarbejderen
             var medarbejder = _medarbejderBLL.GetMedarbejder(medarbejderId);
-
-            // Opret en ViewModel for at inkludere både medarbejderinfo og sager
             var sager = _sagBLL.GetAllSager();
 
             var viewModel = new CreateTidsregistreringViewModel
@@ -33,12 +30,11 @@ namespace MedarbejderMVCApp.Controllers
         [HttpPost]
         public IActionResult CreateTidsregistrering(CreateTidsregistreringViewModel viewModel)
         {
-            if (ModelState.IsValid)
-            {
-                _medarbejderBLL.AddTidsregs(viewModel.Tidsregistrering.MedarbejderId, viewModel.Tidsregistrering);
-                return RedirectToAction("Index", "Home");
-            }
-            return View(viewModel);
+            var tidreg = new TidsregistreringDTO(viewModel.Tidsregistrering.MedarbejderId, viewModel.Tidsregistrering.SagId,
+            viewModel.Tidsregistrering.StartTid, viewModel.Tidsregistrering.SlutTid);
+
+            _medarbejderBLL.AddTidsregs(tidreg.MedarbejderId, tidreg);
+            return RedirectToAction("Index", "Home");
         }
     }
 }

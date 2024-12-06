@@ -21,7 +21,7 @@ public partial class AddMedarbejderPage : ContentPage
         {
             var afdelinger = _afdelingBLL.GetAllAfdelinger();
             AfdelingPicker.ItemsSource = afdelinger;
-            AfdelingPicker.ItemDisplayBinding = new Binding("Navn"); // Viser afdelingens navn i picker
+            AfdelingPicker.ItemDisplayBinding = new Binding("Navn");
         }
         catch (Exception ex)
         {
@@ -42,7 +42,7 @@ public partial class AddMedarbejderPage : ContentPage
                 return;
             }
 
-            if (!long.TryParse(CprEntry.Text, out long cprNummer) /*|| CprEntry.Text.Length != 10*/)
+            if (!long.TryParse(CprEntry.Text, out long cprNummer) || CprEntry.Text.Length != 10)
             {
                 DisplayAlert("Fejl", "CPR-nummer skal være 10 cifre.", "OK");
                 return;

@@ -10,7 +10,6 @@ namespace MedarbejderMVCApp.Controllers
         private MedarbejderBLL _medarbejderBLL = new MedarbejderBLL();
         private AfdelingBLL _afdelingBLL = new AfdelingBLL();
 
-        // GET: Home
         public ActionResult Index()
         {
             var medarbejdere = _medarbejderBLL.GetAllMedarbejdere();
@@ -25,7 +24,6 @@ namespace MedarbejderMVCApp.Controllers
 
         public IActionResult CreateTidsregistrering(int medarbejderId)
         {
-            // Send medarbejderId videre til oprettelse af tidsregistrering
             return RedirectToAction("Create", "Tidsregistrering", new { medarbejderId = medarbejderId });
         }
     }

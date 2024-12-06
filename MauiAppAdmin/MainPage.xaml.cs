@@ -21,6 +21,7 @@ namespace MauiAppAdmin
             LoadMedarbAfdSag();
         }
 
+        // Henter data fra Medarbejder, Afdelinger og Sager og sørger for at listviews kan opdateres
         private void LoadMedarbAfdSag()
         {
             try
@@ -45,7 +46,7 @@ namespace MauiAppAdmin
 
         private void EditMedarbejderClicked(object sender, EventArgs e)
         {
-            var medarbejder = (sender as Button)?.CommandParameter as DTO.Model.MedarbejderDTO;
+            var medarbejder = (sender as Button)?.CommandParameter as MedarbejderDTO;
             if (medarbejder != null)
             {
                 Navigation.PushAsync(new EditMedarbejderPage(medarbejder));
@@ -64,7 +65,7 @@ namespace MauiAppAdmin
 
         private async void DeleteMedarbejderClicked(object sender, EventArgs e)
         {
-            var medarbejder = (sender as Button)?.CommandParameter as DTO.Model.MedarbejderDTO;
+            var medarbejder = (sender as Button)?.CommandParameter as MedarbejderDTO;
             if (medarbejder != null)
             {
                 bool confirmDelete = await DisplayAlert("Bekræft Sletning", $"Er du sikker på, at du vil slette {medarbejder.Navn}?", "Ja", "Nej");
@@ -73,7 +74,7 @@ namespace MauiAppAdmin
                     try
                     {
                         _medarbejderBLL.DeleteMedarbejder(medarbejder.Id);
-                        LoadMedarbAfdSag(); // Opdater listen efter sletning
+                        LoadMedarbAfdSag();
                     }
                     catch (Exception ex)
                     {
@@ -90,7 +91,7 @@ namespace MauiAppAdmin
 
         private void EditAfdelingClicked(object sender, EventArgs e)
         {
-            var afdeling = (sender as Button)?.CommandParameter as DTO.Model.AfdelingDTO;
+            var afdeling = (sender as Button)?.CommandParameter as AfdelingDTO;
             if (afdeling != null)
             {
                 Navigation.PushAsync(new EditAfdelingPage(afdeling));
@@ -99,7 +100,7 @@ namespace MauiAppAdmin
 
         private async void DeleteAfdelingClicked(object sender, EventArgs e)
         {
-            var afdeling = (sender as Button)?.CommandParameter as DTO.Model.AfdelingDTO;
+            var afdeling = (sender as Button)?.CommandParameter as AfdelingDTO;
             if (afdeling != null)
             {
                 bool confirmDelete = await DisplayAlert("Bekræft Sletning", $"Er du sikker på, at du vil slette {afdeling.Navn}?", "Ja", "Nej");
@@ -108,7 +109,7 @@ namespace MauiAppAdmin
                     try
                     {
                         _afdelingBLL.DeleteAfdeling(afdeling.Id);
-                        LoadMedarbAfdSag(); // Opdater listen efter sletning
+                        LoadMedarbAfdSag();
                     }
                     catch (Exception ex)
                     {
@@ -124,7 +125,7 @@ namespace MauiAppAdmin
 
         private void EditSagClicked(object sender, EventArgs e)
         {
-            var sag = (sender as Button)?.CommandParameter as DTO.Model.SagDTO;
+            var sag = (sender as Button)?.CommandParameter as SagDTO;
             if (sag != null)
             {
                 Navigation.PushAsync(new EditSagPage(sag));
@@ -133,7 +134,7 @@ namespace MauiAppAdmin
 
         private async void DeleteSagClicked(object sender, EventArgs e)
         {
-            var sag = (sender as Button)?.CommandParameter as DTO.Model.SagDTO;
+            var sag = (sender as Button)?.CommandParameter as SagDTO;
             if (sag != null)
             {
                 var confirmed = await DisplayAlert("Bekræftelse", "Er du sikker på, at du vil slette denne sag?", "Ja", "Nej");

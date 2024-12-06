@@ -14,7 +14,6 @@ namespace DataAccess.Model
         public int MedarbejderId { get; set; }
         [ForeignKey ("SagId")]
         public int? SagId { get; set; }
-        public Medarbejder Medarbejder { get; set; }
         public DateTime StartTid { get; set; }
         public DateTime SlutTid { get; set; }
 

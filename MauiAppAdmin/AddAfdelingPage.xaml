@@ -9,7 +9,6 @@
         <Label Text="Afdelingens Navn:" FontSize="Medium"/>
         <Entry x:Name="NavnEntry" Placeholder="Indtast afdelingens navn"/>
         <Button Text="Tilføj Afdeling" Clicked="OnAddAfdelingClicked" Margin="0,10,0,10"/>
-        <Label x:Name="ResultLabel" FontSize="Small" TextColor="Red"/>
         
         <Button Text="Tilbage" Clicked="OnCancelClicked"/>
     </VerticalStackLayout>

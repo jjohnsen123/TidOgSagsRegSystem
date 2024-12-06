@@ -22,7 +22,7 @@ public partial class EditSagPage : ContentPage
     {
         var afdelinger = _afdelingBLL.GetAllAfdelinger();
         AfdelingPicker.ItemsSource = afdelinger;
-        AfdelingPicker.ItemDisplayBinding = new Binding("Navn"); // Viser afdelingens navn
+        AfdelingPicker.ItemDisplayBinding = new Binding("Navn");
     }
 
     private void LoadSagData()
@@ -30,7 +30,6 @@ public partial class EditSagPage : ContentPage
         OverskriftEntry.Text = _sag.Overskrift;
         BeskrivelseEntry.Text = _sag.Beskrivelse;
 
-        // Sætter den valgte afdeling i Picker
         var valgtAfdeling = ((List<AfdelingDTO>)AfdelingPicker.ItemsSource).FirstOrDefault(a => a.Id == _sag.AfdelingId);
         if (valgtAfdeling != null)
         {
@@ -40,9 +39,9 @@ public partial class EditSagPage : ContentPage
 
     private void OnSaveClicked(object sender, EventArgs e)
     {
-        if (string.IsNullOrEmpty(OverskriftEntry.Text))
+        if (string.IsNullOrEmpty(OverskriftEntry.Text) || string.IsNullOrEmpty(BeskrivelseEntry.Text))
         {
-            DisplayAlert("Fejl", "Overskriften skal udfyldes.", "OK");
+            DisplayAlert("Fejl", "Tekstfelter skal udfyldes.", "OK");
             return;
         }
 

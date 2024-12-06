@@ -17,8 +17,6 @@ namespace DataAccess.Model
         public string Navn { get; set; }
         [ForeignKey("AfdelingId")] 
         public int AfdelingId { get; set; }
-        public Afdeling Afdeling { get; set; }
-        public List<Tidsregistrering> TidsregList { get; set; } = new List<Tidsregistrering>();
 
         public Medarbejder(double cprNr, string initialer, string navn, int afdId)
         {

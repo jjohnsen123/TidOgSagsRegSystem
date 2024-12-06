@@ -14,11 +14,11 @@
     </div>
     <div class="form-group">
         <label for="StartTid">Start Tid:</label>
-        <input type="datetime-local" name="Tidsregistrering.StartTid" class="form-control" />
+        <input type="datetime-local" name="Tidsregistrering.StartTid" class="form-control" required/>
     </div>
     <div class="form-group">
         <label for="SlutTid">Slut Tid:</label>
-        <input type="datetime-local" name="Tidsregistrering.SlutTid" class="form-control" />
+        <input type="datetime-local" name="Tidsregistrering.SlutTid" class="form-control" required/>
     </div>
 
     <input type="hidden" name="Tidsregistrering.MedarbejderId" value="@Model.Tidsregistrering.MedarbejderId" />

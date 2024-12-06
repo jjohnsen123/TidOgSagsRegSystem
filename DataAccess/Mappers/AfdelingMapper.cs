@@ -14,14 +14,6 @@ namespace DataAccess.Mappers
         {
             var afdeling = new AfdelingDTO(afd.AfdelingId, afd.Navn);
 
-            if (afd.MedarbList != null)
-            {
-                foreach (var ma in afd.MedarbList)
-                {
-                    afdeling.MedarbList.Add(MedarbejderMapper.Map(ma));
-                }
-            }
-
             return afdeling;
 
         }
@@ -29,14 +21,6 @@ namespace DataAccess.Mappers
         public static Afdeling Map(AfdelingDTO afd)
         {
             var afdeling = new Afdeling(afd.Id, afd.Navn);
-
-            if (afd.MedarbList != null)
-            {
-                foreach (var ma in afd.MedarbList)
-                {
-                    afdeling.MedarbList.Add(MedarbejderMapper.Map(ma));
-                }
-            }
 
             return afdeling;
         }

@@ -20,7 +20,7 @@ public partial class AddSagPage : ContentPage
         {
             var afdelinger = _afdelingBLL.GetAllAfdelinger();
             AfdelingPicker.ItemsSource = afdelinger;
-            AfdelingPicker.ItemDisplayBinding = new Binding("Navn"); // Viser afdelingens navn i picker
+            AfdelingPicker.ItemDisplayBinding = new Binding("Navn");
         }
         catch (Exception ex)
         {
@@ -40,12 +40,10 @@ public partial class AddSagPage : ContentPage
 
             var valgtAfdeling = (AfdelingDTO)AfdelingPicker.SelectedItem;
 
-            // Skaber en ny SagDTO og bruger valgt afdelingens Id
             var sag = new SagDTO(OverskriftEntry.Text, BeskrivelseEditor.Text, valgtAfdeling.Id);
 
             _sagBLL.AddSag(sag);
 
-            // Naviger tilbage efter gem
             Navigation.PopAsync();
         }
         catch (Exception ex)

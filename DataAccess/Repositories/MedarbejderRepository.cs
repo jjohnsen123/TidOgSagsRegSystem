@@ -41,7 +41,6 @@ namespace DataAccess.Repositories
                 };
                 var afd = context.Afdelinger.Find(ma.AfdelingId);
 
-                context.Attach(afd);
                 context.Medarbejdere.Add(ma);
                 context.SaveChanges();
             }
@@ -92,24 +91,13 @@ namespace DataAccess.Repositories
             }
         }
 
-        public static List<TidsregistreringDTO> GetAllTidRegInMedarb(int id)
+        public static List<TidsregistreringDTO> GetAllTidReg()
         {
             using (TidSagRegDbContext context = new TidSagRegDbContext())
             {
-                List<TidsregistreringDTO> tidsregList = new List<TidsregistreringDTO>();
-                var ma = context.Medarbejdere.Find(id);
+                var tr = context.Tidsregistreringer;
 
-                if (ma == null)
-                {
-                    throw new KeyNotFoundException($"Medarbejder med initialer '{id}' blev ikke fundet.");
-                }
-
-                foreach (var tr in ma.TidsregList)
-                {
-                    tidsregList.Add(TidsregistreringMapper.Map(tr));
-                }
-
-                return tidsregList;
+                return tr.Select(TidsregistreringMapper.Map).ToList();
             }
         }
 
@@ -125,7 +113,6 @@ namespace DataAccess.Repositories
                     throw new KeyNotFoundException($"Medarbejder med id '{id}' blev ikke fundet.");
                 }
 
-                ma.TidsregList.Add(tr);
                 context.Tidsregistreringer.Add(tr);
                 
                 context.SaveChanges();
@@ -144,7 +131,6 @@ namespace DataAccess.Repositories
                     throw new KeyNotFoundException($"Tidsregistrering med id '{id}' blev ikke fundet.");
                 }
 
-                medarb.TidsregList.Remove(tr);
                 context.Tidsregistreringer.Remove(tr);
                 context.SaveChanges();
             }

@@ -21,14 +21,6 @@ namespace DataAccess.Mappers
                 Id = ma.Id
             };
 
-            if (ma.TidsregList != null)
-            {
-                foreach (var tr in ma.TidsregList)
-                {
-                    medarb.TidsregList.Add(TidsregistreringMapper.Map(tr));
-                }
-            }
-
             return medarb;
         }
 
@@ -42,14 +34,6 @@ namespace DataAccess.Mappers
                 AfdelingId = ma.AfdelingId,
                 Id = ma.Id
             };
-
-            if (ma.TidsregList != null)
-            {
-                foreach (var tr in ma.TidsregList)
-                {
-                    medarb.TidsregList.Add(TidsregistreringMapper.Map(tr));
-                }
-            }
 
             return medarb;
         }

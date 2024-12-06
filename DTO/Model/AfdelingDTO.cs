@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,6 @@ namespace DTO.Model
     {
         public int Id { get; set; }
         public string Navn { get; set; }
-        public List<MedarbejderDTO> MedarbList { get; set; } = new List<MedarbejderDTO>();
 
         public AfdelingDTO(int id, string navn)
         {

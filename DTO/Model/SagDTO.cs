@@ -14,9 +14,6 @@ namespace DTO.Model
         public string Beskrivelse { get; set; }
         [ForeignKey ("AfdelingId")]
         public int AfdelingId { get; set; }
-        public AfdelingDTO Afd { get; set; }
-        public List<TidsregistreringDTO> TidsregList { get; set; } = new List<TidsregistreringDTO>();
-
 
         public SagDTO(string overskrift, string beskrivelse, int afdId)
         {

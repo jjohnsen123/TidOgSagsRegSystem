@@ -15,7 +15,6 @@ namespace DataAccess.Model
         public string Beskrivelse { get; set; }
         [ForeignKey ("AfdelingId")]
         public int AfdelingId { get; set; }
-        public Afdeling Afd { get; set; }
 
         public Sag(string overskrift, string beskrivelse, int afdId)
         {

@@ -14,7 +14,7 @@ public partial class MedarbejderDetailPage : ContentPage
         InitializeComponent();
         _medarbejderId = medarbejder.Id;
         LoadMedarbejderDetails(medarbejder);
-        LoadTidsregistreringer();
+        LoadTidsregistreringer(_medarbejderId);
     }
 
     private void LoadMedarbejderDetails(MedarbejderDTO medarbejder)
@@ -25,11 +25,14 @@ public partial class MedarbejderDetailPage : ContentPage
         AfdelingLabel.Text = _afdelingBLL.GetAfdeling(medarbejder.AfdelingId).Navn;
     }
 
-    private void LoadTidsregistreringer()
+    private void LoadTidsregistreringer(int medarbId)
     {
         try
         {
-            var tidsregistreringer = _medarbejderBLL.GetAllTidRegInMedarb(_medarbejderId);
+            // Henter alle tidsregristreringer med matchende medarbejderId
+            var tidsregistreringer = _medarbejderBLL.GetAllTidReg()
+                .Where(tr => tr.MedarbejderId == medarbId);
+
 
             // Beregn ugentlige tidsregistreringer
             var thisWeek = DateTime.Now.StartOfWeek(DayOfWeek.Monday);
@@ -52,6 +55,7 @@ public partial class MedarbejderDetailPage : ContentPage
                 totalTid += tr.SlutTid - tr.StartTid;
             }
             TotalTimeLabel.Text = $"Total tid: {totalTid.TotalHours} timer";
+
         }
         catch (Exception ex)
         {

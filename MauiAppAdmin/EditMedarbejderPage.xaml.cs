@@ -38,7 +38,6 @@ public partial class EditMedarbejderPage : ContentPage
         InitialerEntry.Text = _medarbejder.Initialer;
         CprEntry.Text = _medarbejder.CprNr.ToString();
 
-        // Sætter den valgte afdeling i Picker
         var valgtAfdeling = ((List<AfdelingDTO>)AfdelingPicker.ItemsSource).FirstOrDefault(a => a.Id == _medarbejder.AfdelingId);
         if (valgtAfdeling != null)
         {
@@ -67,7 +66,6 @@ public partial class EditMedarbejderPage : ContentPage
 
             var valgtAfdeling = (AfdelingDTO)AfdelingPicker.SelectedItem;
 
-            // Opdaterer medarbejderens data
             _medarbejder.Navn = NavnEntry.Text;
             _medarbejder.Initialer = InitialerEntry.Text;
             _medarbejder.CprNr = cprNummer;

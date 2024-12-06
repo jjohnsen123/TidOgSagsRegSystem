@@ -40,9 +40,9 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout Orientation="Horizontal" Padding="5">
-                                <Label Text="{Binding StartTid, StringFormat='dd-MM-yyyy HH:mm'}" />
-                                <Label Text=" - " />
-                                <Label Text="{Binding SlutTid, StringFormat='dd-MM-yyyy HH:mm'}" />
+                                <Label Text="{Binding StartTid}" />
+                                <Label Text=" - " Padding="5,0,5,0"/>
+                                <Label Text="{Binding SlutTid}" />
                             </StackLayout>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
@@ -54,9 +54,9 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout Orientation="Horizontal" Padding="5">
-                                <Label Text="{Binding StartTid, StringFormat='dd-MM-yyyy HH:mm'}" />
-                                <Label Text=" - " />
-                                <Label Text="{Binding SlutTid, StringFormat='dd-MM-yyyy HH:mm'}" />
+                                <Label Text="{Binding StartTid}" />
+                                <Label Text=" - " Padding="5,0,5,0"/>
+                                <Label Text="{Binding SlutTid}" />
                             </StackLayout>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppAdmin.EditSagPage"
              Title="Rediger Sag">
+    
     <StackLayout Margin="40">
         <Entry x:Name="OverskriftEntry" Placeholder="Overskrift" />
         <Entry x:Name="BeskrivelseEntry" Placeholder="Beskrivelse" />

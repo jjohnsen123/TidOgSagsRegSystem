@@ -24,7 +24,12 @@ namespace DataAccess.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=LAPTOP-ANE2D06V\\SQLEXPRESS;Initial Catalog=TidSagOgRegDB;Integrated Security=SSPI;TrustServerCertificate=true");
+            // Laptop
+            //optionsBuilder.UseSqlServer("Data Source=LAPTOP-ANE2D06V\\SQLEXPRESS;Initial Catalog=TidSagOgRegDB;Integrated Security=SSPI;TrustServerCertificate=true");
+            
+            // Desktop
+            optionsBuilder.UseSqlServer("Data Source=DESKTOP-JJOHN\\SQLEXPRESS;Initial Catalog=TidSagOgRegDB;Integrated Security=SSPI;TrustServerCertificate=true");
+
             optionsBuilder.LogTo(message  => Debug.WriteLine(message));
             optionsBuilder.EnableSensitiveDataLogging();
 
@@ -42,32 +47,8 @@ namespace DataAccess.Context
                 new Afdeling(-3,"Finans")
             );
 
-            modelBuilder.Entity<Medarbejder>()
-                .HasKey(m => m.Id);
-                
             modelBuilder.Entity<Sag>()
                 .HasKey(s => s.SagsNr);
-
-            modelBuilder.Entity<Tidsregistrering>()
-                .HasKey(t => t.Id);
-
-            modelBuilder.Entity<Medarbejder>()
-                .HasMany(m => m.TidsregList)
-                .WithOne(t => t.Medarbejder);
-
-            //modelBuilder.Entity<Medarbejder>()
-            //    .HasOne(a => a.Afdeling)
-            //    .WithOne()
-            //    .HasForeignKey("Afdeling");
-
-            //modelBuilder.Entity<Sag>()
-            //    .HasMany(s => s.TidsregList)
-            //    .WithOne(t => t.Sag)
-            //    .IsRequired(false);
-
-            //modelBuilder.Entity<Afdeling>()
-            //    .HasMany(a => a.MedarbList)
-            //    .WithOne(m => m.Afdeling);
         }
 
 

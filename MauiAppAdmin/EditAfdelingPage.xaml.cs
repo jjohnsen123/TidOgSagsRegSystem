@@ -17,7 +17,7 @@ public partial class EditAfdelingPage : ContentPage
 
     private void LoadAfdelingData()
     {
-        NavnEntry.Text = _afdeling.Navn; // Indlæs afdelingens navn i entry-feltet
+        NavnEntry.Text = _afdeling.Navn;
     }
 
     private async void OnSaveClicked(object sender, EventArgs e)
@@ -32,10 +32,9 @@ public partial class EditAfdelingPage : ContentPage
 
             _afdeling.Navn = NavnEntry.Text;
 
-            // Opdater afdelingen gennem BLL
             _afdelingBLL.EditAfdeling(_afdeling);
 
-            await Navigation.PopAsync(); // Gå tilbage efter at gemme
+            await Navigation.PopAsync();
         }
         catch (Exception ex)
         {

@@ -7,5 +7,7 @@ namespace MedarbejderMVCApp.ViewModels
         public MedarbejderDTO Medarbejder { get; set; }
         public List<SagDTO> Sager { get; set; }
         public TidsregistreringDTO Tidsregistrering { get; set; }
+
+
     }
 }

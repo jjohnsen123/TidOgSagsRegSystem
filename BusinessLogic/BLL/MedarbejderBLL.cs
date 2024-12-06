@@ -80,9 +80,9 @@ namespace BusinessLogic.BLL
             return MedarbejderRepository.GetAllMedarbejdere();
         }
 
-        public List<TidsregistreringDTO> GetAllTidRegInMedarb(int id)
+        public List<TidsregistreringDTO> GetAllTidReg()
         {
-            return MedarbejderRepository.GetAllTidRegInMedarb(id);
+            return MedarbejderRepository.GetAllTidReg();
         }
 
         public void AddTidsregs(int id, TidsregistreringDTO tr)
@@ -95,6 +95,7 @@ namespace BusinessLogic.BLL
             MedarbejderRepository.AddTidsReg(id, tr);
         }
 
+        // Bliver ikke brugt i denne version
         public void DeleteTidsregistrering(int id)
         {
             try
