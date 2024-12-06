@@ -4,8 +4,9 @@
 
 <form action="/Tidsregistrering/CreateTidsregistrering" method="post">
     <div class="form-group">
-        <label for="SagId">Vælg Sag:</label>
+        <label for="SagId">Vælg Sag (valgfrit):</label>
         <select name="Tidsregistrering.SagId" class="form-control">
+            <option value="">Ingen Sag</option> <!-- Option til ingen sag -->
             @foreach (var sag in Model.Sager)
             {
                 <option value="@sag.SagsNr">@sag.Overskrift</option>
@@ -14,11 +15,11 @@
     </div>
     <div class="form-group">
         <label for="StartTid">Start Tid:</label>
-        <input type="datetime-local" name="Tidsregistrering.StartTid" class="form-control" required/>
+        <input type="datetime-local" name="Tidsregistrering.StartTid" class="form-control" required />
     </div>
     <div class="form-group">
         <label for="SlutTid">Slut Tid:</label>
-        <input type="datetime-local" name="Tidsregistrering.SlutTid" class="form-control" required/>
+        <input type="datetime-local" name="Tidsregistrering.SlutTid" class="form-control" required />
     </div>
 
     <input type="hidden" name="Tidsregistrering.MedarbejderId" value="@Model.Tidsregistrering.MedarbejderId" />

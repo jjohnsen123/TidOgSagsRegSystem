@@ -30,8 +30,10 @@ namespace MedarbejderMVCApp.Controllers
         [HttpPost]
         public IActionResult CreateTidsregistrering(CreateTidsregistreringViewModel viewModel)
         {
-            var tidreg = new TidsregistreringDTO(viewModel.Tidsregistrering.MedarbejderId, viewModel.Tidsregistrering.SagId,
-            viewModel.Tidsregistrering.StartTid, viewModel.Tidsregistrering.SlutTid);
+            int? sagId = string.IsNullOrEmpty(viewModel.Tidsregistrering.SagId.ToString()) ? (int?)null : viewModel.Tidsregistrering.SagId;
+
+            var tidreg = new TidsregistreringDTO(viewModel.Tidsregistrering.MedarbejderId, sagId,
+                viewModel.Tidsregistrering.StartTid, viewModel.Tidsregistrering.SlutTid);
 
             _medarbejderBLL.AddTidsregs(tidreg.MedarbejderId, tidreg);
             return RedirectToAction("Index", "Home");
