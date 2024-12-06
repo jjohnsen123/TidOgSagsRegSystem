@@ -37,18 +37,33 @@ namespace DataAccess.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Afdeling>()
-                .HasKey(a => a.AfdelingId);
-
-            //Seed afdelinger
+            //Seed data for Afdeling
             modelBuilder.Entity<Afdeling>().HasData(
                 new Afdeling(-1,"IT"),
                 new Afdeling(-2,"HR"),
                 new Afdeling(-3,"Finans")
             );
 
-            modelBuilder.Entity<Sag>()
-                .HasKey(s => s.SagsNr);
+            // Seed data for Medarbejder
+            modelBuilder.Entity<Medarbejder>().HasData(
+                new Medarbejder(1234567890, "AA", "Alice Andersen", -1) { Id = -1 },
+                new Medarbejder(2345678901, "BB", "Benny Bentsen", -2) { Id = -2 },
+                new Medarbejder(3456789012, "CC", "Carla Christensen", -3) { Id = -3 }
+            );
+
+            // Seed data for Sag
+            modelBuilder.Entity<Sag>().HasData(
+                new Sag("Opgradering af servere", "Opgradering af servere i IT-afdelingen", -1) { Id = -1 },
+                new Sag("Rekruttering", "Rekruttering af nye medarbejdere til HR-afdelingen", -2) { Id = -2 },
+                new Sag("Budgetplanlægning", "Planlægning af næste års budget for finansafdelingen", -3) { Id = -3 }
+            );
+
+            // Seed data for Tidsregistrering
+            modelBuilder.Entity<Tidsregistrering>().HasData(
+                new Tidsregistrering(-1, -1, DateTime.Now, DateTime.Now.AddHours(9)) { Id = -1 },
+                new Tidsregistrering(-2, -2, DateTime.Now, DateTime.Now.AddHours(5)) { Id = -2 },
+                new Tidsregistrering(-3, -3, DateTime.Now, DateTime.Now.AddHours(2)) { Id = -3 }
+            );
         }
 
 

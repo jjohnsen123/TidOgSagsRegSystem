@@ -9,7 +9,7 @@ namespace DTO.Model
 {
     public class SagDTO
     {
-        public int SagsNr { get; set; }
+        public int Id { get; set; }
         public string Overskrift {  get; set; }
         public string Beskrivelse { get; set; }
         [ForeignKey ("AfdelingId")]

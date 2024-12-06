@@ -57,7 +57,7 @@ namespace DataAccess.Repositories
         {
             using (TidSagRegDbContext context = new TidSagRegDbContext())
             {
-                var afd = context.Afdelinger.FirstOrDefault(a => a.AfdelingId == afdNr);
+                var afd = context.Afdelinger.FirstOrDefault(a => a.Id == afdNr);
 
                 if (afd == null)
                 {

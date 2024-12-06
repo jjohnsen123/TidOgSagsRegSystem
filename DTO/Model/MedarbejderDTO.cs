@@ -24,7 +24,6 @@ namespace DTO.Model
             Initialer = initialer;
             Navn = navn;
             AfdelingId = afdId;
-
         }
 
 

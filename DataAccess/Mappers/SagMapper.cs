@@ -14,7 +14,7 @@ namespace DataAccess.Mappers
         {
             var sa = new SagDTO
             {
-                SagsNr = sag.SagsNr,
+                Id = sag.Id,
                 Overskrift = sag.Overskrift,
                 Beskrivelse = sag.Beskrivelse,
                 AfdelingId = sag.AfdelingId
@@ -27,7 +27,7 @@ namespace DataAccess.Mappers
         {
             var sa = new Sag
             {
-                SagsNr = sag.SagsNr,
+                Id = sag.Id,
                 Overskrift = sag.Overskrift,
                 Beskrivelse = sag.Beskrivelse,
                 AfdelingId = sag.AfdelingId
@@ -39,7 +39,7 @@ namespace DataAccess.Mappers
 
         public static void Update(Sag sag, SagDTO sagDTO)
         {
-            sag.SagsNr = sagDTO.SagsNr;
+            sag.Id = sagDTO.Id;
             sag.Overskrift = sagDTO.Overskrift;
             sag.Beskrivelse = sagDTO.Beskrivelse;
             sag.AfdelingId = sagDTO.AfdelingId;

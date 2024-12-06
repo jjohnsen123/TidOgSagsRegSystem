@@ -9,7 +9,7 @@
             <option value="">Ingen Sag</option> <!-- Option til ingen sag -->
             @foreach (var sag in Model.Sager)
             {
-                <option value="@sag.SagsNr">@sag.Overskrift</option>
+                <option value="@sag.Id">@sag.Overskrift</option>
             }
         </select>
     </div>

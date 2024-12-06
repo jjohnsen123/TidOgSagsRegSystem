@@ -12,7 +12,7 @@ namespace DataAccess.Mappers
     {
         public static AfdelingDTO Map(Afdeling afd)
         {
-            var afdeling = new AfdelingDTO(afd.AfdelingId, afd.Navn);
+            var afdeling = new AfdelingDTO(afd.Id, afd.Navn);
 
             return afdeling;
 

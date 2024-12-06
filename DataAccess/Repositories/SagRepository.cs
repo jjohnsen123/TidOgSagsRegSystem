@@ -40,11 +40,11 @@ namespace DataAccess.Repositories
         {
             using (TidSagRegDbContext context = new TidSagRegDbContext())
             {
-                var sag = context.Sager.Find(sagDTO.SagsNr);
+                var sag = context.Sager.Find(sagDTO.Id);
 
                 if (sag == null)
                 {
-                    throw new KeyNotFoundException($"Sag med nummer '{sagDTO.SagsNr}' blev ikke fundet.");
+                    throw new KeyNotFoundException($"Sag med nummer '{sagDTO.Id}' blev ikke fundet.");
                 }
 
                 SagMapper.Update(sag, sagDTO);

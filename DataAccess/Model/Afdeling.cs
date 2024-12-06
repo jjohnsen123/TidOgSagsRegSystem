@@ -11,12 +11,12 @@ namespace DataAccess.Model
     public class Afdeling
     {
 
-        public int AfdelingId { get; set; }
+        public int Id { get; set; }
         public string Navn { get; set; }
 
         public Afdeling(int id,  string navn)
         {
-            AfdelingId = id;
+            Id = id;
             Navn = navn;
         }
 

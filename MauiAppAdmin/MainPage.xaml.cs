@@ -142,7 +142,7 @@ namespace MauiAppAdmin
                 {
                     try
                     {
-                        _sagBLL.DeleteSag(sag.SagsNr);
+                        _sagBLL.DeleteSag(sag.Id);
                         LoadMedarbAfdSag();
                     }
                     catch (Exception ex)

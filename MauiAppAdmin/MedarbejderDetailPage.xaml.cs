@@ -54,7 +54,7 @@ public partial class MedarbejderDetailPage : ContentPage
             {
                 totalTid += tr.SlutTid - tr.StartTid;
             }
-            TotalTimeLabel.Text = $"Total tid: {totalTid.TotalHours} timer";
+            TotalTimeLabel.Text = $"Total tid: {Math.Round(totalTid.TotalHours, 2)} timer";
 
         }
         catch (Exception ex)
